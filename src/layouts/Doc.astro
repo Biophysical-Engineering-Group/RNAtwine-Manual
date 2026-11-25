@@ -19,6 +19,8 @@ const here = pages.find((p) => p.slug === current);
 const onStep = here?.data.step ?? 0;
 const sub = headings.filter((h) => h.depth === 2);
 const year = new Date().getFullYear();
+// Kept out of search engines until the manual is announced: build with PUBLIC_INDEX=1 to allow indexing.
+const noindex = import.meta.env.PUBLIC_INDEX !== '1';
 const fullTitle = current ? `${title} · RNAtwine manual` : 'RNAtwine manual';
 ---
 <!doctype html>
@@ -28,6 +30,7 @@ const fullTitle = current ? `${title} · RNAtwine manual` : 'RNAtwine manual';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/png" href={`${base}img/favicon.png`} />
     <script is:inline>
       try { const t = localStorage.getItem('rnatwine-manual-theme'); if (t) document.documentElement.dataset.theme = t; } catch {}

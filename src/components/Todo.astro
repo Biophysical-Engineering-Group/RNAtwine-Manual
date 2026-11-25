@@ -1,5 +1,7 @@
 ---
-// A question for the author, left in the draft where it applies. Shown in the caution color
-// so it is seen in review; `npm run slots` lists every one. Remove it once answered.
+// A question for the author, left in the draft where it applies. Shown in the caution color in
+// `npm run dev`, so it is seen in review, and left out of the built site that is published;
+// `npm run slots` lists every one. Remove it once answered.
+const show = import.meta.env.DEV;
 ---
-<aside class="todo" data-todo><span class="todo-tag">TODO</span><slot /></aside>
+{show && <aside class="todo" data-todo><span class="todo-tag">TODO</span><slot /></aside>}
