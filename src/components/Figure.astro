@@ -1,0 +1,96 @@
+---
+// A screen capture by slot name, in the theme on screen.
+//
+// The caption comes from the page's front matter (`figures:`), else from the capture
+// manifest. The images are public/captures-web/<name>-light.* and <name>-dark.*, which
+// scripts/make-web-images.py writes with their sizes into src/data/image-ratios.json.
+// Until a capture exists the slot is drawn as a placeholder that names the files expected.
+// Each image links to its full-size PNG in public/captures/.
+//
+// Size: a capture is shown at its true size, one CSS px per app point. The captures are
+// taken at 2 px a point, so the <img> gets the full PNG's pixel size halved as its width and
+// height, and `max-width: 100%` (site.css) caps it at the column. A side-panel crop of 469 pt
+// is shown at 469 px, as large as in the app, instead of being stretched to the column; a
+// crop wider than the column is scaled down to it. The full PNG's size is read from its
+// header; if the PNG is missing, the web image's size is used (the same unless the web image
+// was reduced, which happens only to crops already wider than the column).
+//
+// A slot listed in src/data/retakes.json is waiting for a new capture: its figure shows the
+// capture it has, un-annotated, and a small "retake pending" tag in the caption for review,
+// or "CPU preview, GPU capture pending" when the reason starts with "CPU preview" (a picture
+// the CPU raster drew, the twine as plain tubes). Remove the slot from retakes.json when the
+// new capture is in.
+import { openSync, readSync, closeSync } from 'node:fs';
+import { join } from 'node:path';
+import { getCollection } from 'astro:content';
+import ratios from '../data/image-ratios.json';
+import manifest from '../data/captures.json';
+import retakes from '../data/retakes.json';
+
+interface Props { name: string; wide?: boolean }
+const { name, wide = false } = Astro.props;
+
+type Img = { file: string; w: number; h: number; full?: string };
+const R = ratios as Record<string, Img>;
+const M = manifest as Record<string, { caption?: string; section?: string }>;
+const T = (retakes as { slots?: Record<string, string> }).slots ?? {};
+const PX_PER_PT = 2;
+
+let base = import.meta.env.BASE_URL;
+if (!base.endsWith('/')) base += '/';
+
+const pages = await getCollection('manual');
+const declared = pages.flatMap((p) => p.data.figures).find((f) => f.name === name);
+const caption = declared?.caption ?? M[name]?.caption ?? '';
+const undeclared = !declared;
+const retake = T[name];
+
+// Either theme falls back to the other, and a capture without a theme serves both.
+const light = R[`${name}-light`] ?? R[name] ?? R[`${name}-dark`];
+const dark = R[`${name}-dark`] ?? R[name] ?? R[`${name}-light`];
+const has = Boolean(light && dark);
+const src = (i: Img) => `${base}captures-web/${i.file}`;
+const full = (i: Img) => (i.full ? `${base}captures/${i.full}` : src(i));
+
+// The full PNG's pixel size from its IHDR chunk (bytes 16-23), else the web image's.
+function pngSize(file?: string): [number, number] | null {
+  if (!file || !file.toLowerCase().endsWith('.png')) return null;
+  try {
+    const fd = openSync(join(process.cwd(), 'public', 'captures', file), 'r');
+    const b = Buffer.alloc(24);
+    readSync(fd, b, 0, 24, 0);
+    closeSync(fd);
+    return [b.readUInt32BE(16), b.readUInt32BE(20)];
+  } catch {
+    return null;
+  }
+}
+const shown = (i: Img) => {
+  const [w, h] = pngSize(i.full) ?? [i.w, i.h];
+  return { w: Math.round(w / PX_PER_PT), h: Math.round(h / PX_PER_PT) };
+};
+const L = has ? shown(light!) : null;
+const D = has ? shown(dark!) : null;
+---
+<figure class:list={['shot', { wide }]} id={`fig-${name}`} data-slot={name} data-retake={retake ? 'pending' : undefined}>
+  {has ? (
+    <>
+      <a class="only-light" href={full(light!)} target="_blank" rel="noopener">
+        <img src={src(light!)} width={L!.w} height={L!.h} alt={caption} loading="lazy" decoding="async" />
+      </a>
+      <a class="only-dark" href={full(dark!)} target="_blank" rel="noopener">
+        <img src={src(dark!)} width={D!.w} height={D!.h} alt={caption} loading="lazy" decoding="async" />
+      </a>
+    </>
+  ) : (
+    <div class="slot" role="img" aria-label={`Screen capture to come: ${caption}`}>
+      <span class="slot-name">{name}</span>
+      <span class="slot-note">capture pending: {name}-light.png, {name}-dark.png</span>
+    </div>
+  )}
+  <figcaption>
+    <span class="fig-n"></span>{caption}
+    {retake && <span class="slot-retake" title={retake}>{retake.startsWith('CPU preview') ? 'CPU preview, GPU capture pending' : 'retake pending'}</span>}
+    {undeclared && <strong class="slot-error"> [slot "{name}" is not listed in this page's figures]</strong>}
+  </figcaption>
+</figure>

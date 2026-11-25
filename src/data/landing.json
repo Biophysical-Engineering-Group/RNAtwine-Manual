@@ -1,0 +1,42 @@
+{
+ "feature_assemble-dark": {
+  "file": "feature_assemble-dark.webp",
+  "h": 651,
+  "w": 800
+ },
+ "feature_assemble-light": {
+  "file": "feature_assemble-light.webp",
+  "h": 651,
+  "w": 800
+ },
+ "feature_compare-dark": {
+  "file": "feature_compare-dark.webp",
+  "h": 288,
+  "w": 800
+ },
+ "feature_compare-light": {
+  "file": "feature_compare-light.webp",
+  "h": 288,
+  "w": 800
+ },
+ "feature_relax-dark": {
+  "file": "feature_relax-dark.webp",
+  "h": 645,
+  "w": 800
+ },
+ "feature_relax-light": {
+  "file": "feature_relax-light.webp",
+  "h": 645,
+  "w": 800
+ },
+ "hero-dark": {
+  "file": "hero-dark.webp",
+  "h": 1199,
+  "w": 1400
+ },
+ "hero-light": {
+  "file": "hero-light.webp",
+  "h": 1199,
+  "w": 1400
+ }
+}

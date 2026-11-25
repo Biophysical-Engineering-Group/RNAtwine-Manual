@@ -1,0 +1,72 @@
+# Landing-page images for the manual site: the 3D view alone, light and dark, on a transparent
+# ground, with no loop handles or labels, each framed to fill its image. Rendered with no
+# window by the app's render mode:
+#
+#   /Users/cgeary/ClaudeScience/RNAmodeling/rnatwine-rs-repo/bin/RNAtwine.app/Contents/MacOS/RNAtwine \
+#     --render landing.toml landing_out
+#
+# On a Mac the GPU draws them (the twine as laid rope); with no GPU adapter, or with --cpu, the
+# CPU draws previews (the twine as plain tubes). manifest.json says which drew each image.
+# Keys: rnatwine-rs-repo docs/app.md, "Render mode".
+
+library = "~/ClaudeScience/RNAmodeling/rnatwine-rs-repo/library/designs"
+
+[paths]
+runs = "~/ClaudeScience/RNAmodeling/captures/inputs/runs"
+refs = "~/ClaudeScience/RNAmodeling/RCSB Origami"
+
+# The relaxed 6HB-C tile in the coarse view, colored by place along each strand, 5' to 3'
+# (manual.toml's colour-strand). 2400 px wide, the height from the framed tile.
+[[image]]
+name = "hero"
+themes = ["light", "dark"]
+run = "{runs}/young_7PTK_other_isomer.rtrun"
+view = "coarse"
+colour = "strand"
+camera = { yaw = 20, pitch = -25, fit = 0.04 }
+background = "transparent"
+size = 2400
+
+# The drawing, relaxed: the 5HT-B tile relaxed here from its saved tile setup (tile_7PTS) under
+# the adopted parameters, in the coarse view, colored by its displacement from the drawing,
+# percentile-ranked.
+[[image]]
+name = "feature_relax"
+themes = ["light", "dark"]
+design = "5HTB_ss"
+setup = "tile_7PTS"
+relax = true
+view = "coarse"
+colour = "displacement"
+camera = { yaw = 20, pitch = -25 }
+background = "transparent"
+size = [1200, 900]
+
+# Assembled: four copies of that tile joined into a ring, in the twine view, the copies in
+# the alternate plain colors (jute and sisal), tilted so the ring reads as a ring.
+[[image]]
+name = "feature_assemble"
+themes = ["light", "dark"]
+run = "{runs}/ring4.rtrun"
+view = "twine"
+colour = "plain"
+camera = { yaw = 10, pitch = -35 }
+background = "transparent"
+size = [1200, 900]
+
+# 5HTB_3X relaxed from its saved setup (about 15 to 20 s) and compared with the EMD-13592
+# density map, the map's contour drawn over it as dots and the model colored by its distance
+# from the density (manual.toml's inspect-compare-map, which is in the coarse view; for the
+# rope, view = "twine").
+[[image]]
+name = "feature_compare"
+themes = ["light", "dark"]
+design = "5HTB_3X"
+setup = "sheet_EMD-13592"
+relax = true
+reference = "{refs}/emd_13592-5HTB-3X.map"
+overlay = true
+view = "coarse"
+colour = "reference"
+background = "transparent"
+size = [1200, 900]

@@ -1,0 +1,29 @@
+---
+// A rendered illustration (not a screen capture), in the theme on screen.
+//
+// The images are public/landing/<name>-light.webp and <name>-dark.webp, rendered by the app's
+// render mode with a transparent background and written here, with their pixel sizes in
+// src/data/landing.json, by scripts/make-landing-images.py. An image is shown at half its
+// pixel width, capped by its box, so it stays sharp on high-density screens. Until an image
+// exists nothing is drawn, so the page reads as text alone.
+import art from '../data/landing.json';
+
+interface Props { name: string; alt: string; class?: string; eager?: boolean }
+const { name, alt, class: cls, eager = false } = Astro.props;
+
+type Img = { file: string; w: number; h: number };
+const A = art as Record<string, Img>;
+let base = import.meta.env.BASE_URL;
+if (!base.endsWith('/')) base += '/';
+
+const light = A[`${name}-light`] ?? A[`${name}-dark`];
+const dark = A[`${name}-dark`] ?? A[`${name}-light`];
+const src = (i: Img) => `${base}landing/${i.file}`;
+const loading = eager ? 'eager' : 'lazy';
+---
+{light && dark && (
+  <div class:list={['art', cls]}>
+    <img class="only-light" src={src(light)} width={light.w / 2} height={light.h / 2} alt={alt} loading={loading} decoding="async" />
+    <img class="only-dark" src={src(dark)} width={dark.w / 2} height={dark.h / 2} alt={alt} loading={loading} decoding="async" />
+  </div>
+)}

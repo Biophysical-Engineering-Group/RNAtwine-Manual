@@ -1,0 +1,202 @@
+{
+ "build-blocks": {
+  "caption": "From runs. Saved runs as blocks, the joins between blocks, and Place, which fits each block at its joins and shows where the relax would start.",
+  "section": "build"
+ },
+ "build-copies": {
+  "caption": "Dimer, ring or chain. The copy count, the topology (ring, chain or strip) and, for each joined site, the site it pairs with on the next copy.",
+  "section": "build"
+ },
+ "build-dimer": {
+  "caption": "Build > Dimer, ring or chain from the saved type-1 dimer setup: two copies joined reciprocally through loop 5.",
+  "section": "build"
+ },
+ "build-handles": {
+  "caption": "Loop handles over the view. A filled sapphire disc closes, a hollow one is left open, a gold one joins copies, and a dashed disc with a question mark still needs a role. The loop under the pointer shows its role and a dashed arc to its other half.",
+  "section": "build"
+ },
+ "build-lattice": {
+  "caption": "Tube or sheet. The shape, the sites to the rows above and below, the rows and the tiles along each row, the seam, the face turned out and the start.",
+  "section": "build"
+ },
+ "build-loop-pinned": {
+  "caption": "A loop pinned by a click on its handle: highlighted in the view and found in the loop table.",
+  "section": "build"
+ },
+ "build-loops": {
+  "caption": "The Kissing loops table. Loops the drawing leaves open come first under Needs a decision, each with its role switch (close, open, join), the isomer toggle and its drawn gap; the loops drawn closed are folded below.",
+  "section": "build"
+ },
+ "build-relax-progress": {
+  "caption": "A relax in progress. The twine bar shows how far the whole run has come; under it, what is relaxing and its stage, the time so far against the time expected, Cancel relax and the folded Details.",
+  "section": "build"
+ },
+ "build-setups": {
+  "caption": "The Build start screen. One card for each kind of setup, with what it relaxes, and the design's saved setups below them.",
+  "section": "build"
+ },
+ "colour-displacement": {
+  "caption": "Color: displacement from the drawing, percentile-ranked.",
+  "section": "view"
+ },
+ "colour-plain": {
+  "caption": "Color: plain.",
+  "section": "view"
+ },
+ "colour-reference": {
+  "caption": "Color: distance from the reference compared with (here 7PTK), the trace off.",
+  "section": "view"
+ },
+ "colour-strand": {
+  "caption": "Color: place along each strand, 5' to 3'.",
+  "section": "view"
+ },
+ "concepts-about": {
+  "caption": "The About window. What RNAtwine is, its model in three paragraphs, the model's figures and the credits.",
+  "section": "concepts"
+ },
+ "concepts-loop-closing": {
+  "caption": "A relaxed tile with its drawing as a pale overlay (View options, drawn model). The relax has closed the kissing loops onto their templates and spread the strain through the tile.",
+  "section": "concepts"
+ },
+ "edit-roles": {
+  "caption": "An edit held because a loop has no role. Each such loop is listed with its size and the distance between its halves, and three buttons give it a role.",
+  "section": "edit"
+ },
+ "edit-save": {
+  "caption": "Saving the edited design as a new folder beside the original.",
+  "section": "edit"
+ },
+ "edit-slide": {
+  "caption": "A kissing loop selected through its handle, with Slide +1 bp and Slide -1 bp, which move one pair from one hairpin stem to the other.",
+  "section": "edit"
+ },
+ "edit-start": {
+  "caption": "The Edit step before editing, with Start editing and, for a pyFuRNAce design, whether the saved design will get its pyFuRNAce .json.",
+  "section": "edit"
+ },
+ "edit-stem": {
+  "caption": "A paired nucleotide selected in Edit. The panel names it and its helix, with -1 bp and +1 bp, +1 nt for a bulge, the base pair to add, and the options for relaxing after each edit.",
+  "section": "edit"
+ },
+ "export-image": {
+  "caption": "The Image and Twine model sections. The image is the view at one, two or four times its size; the twine model is a .glb mesh in the colors on screen.",
+  "section": "export"
+ },
+ "export-quit": {
+  "caption": "Closing the window with unsaved runs. The dialog offers Go to Export, Quit without saving or Cancel.",
+  "section": "export"
+ },
+ "export-runs": {
+  "caption": "Export's list of the session's runs, each with its energy, how it ended, whether it is saved and whether it is on screen, with View and Save..., and Save all unsaved... below.",
+  "section": "export"
+ },
+ "export-structures": {
+  "caption": "Structures of the run on screen. The relaxed .dat, the relaxed pyFuRNAce .json and the full-atom PDB of the geometry chosen over the view.",
+  "section": "export"
+ },
+ "faq-no-role": {
+  "caption": "Relax refused because loops have no role. The loops wait under Needs a decision in Build, marked as needing a role, and the status line counts them.",
+  "section": "troubleshooting"
+ },
+ "faq-unsaved-badge": {
+  "caption": "The badge on the Export step counting the runs not yet saved.",
+  "section": "troubleshooting"
+ },
+ "inspect-assembly": {
+  "caption": "An assembly relaxed: the type-1 dimer, its copies in alternate colors, with each joined loop's gap and twist error.",
+  "section": "inspect"
+ },
+ "inspect-card": {
+  "caption": "The card of a selected paired nucleotide. The selection is gold and its partner sky blue; the card gives the pair, the context along the strand, how far the relax moved the nucleotide and, with full atoms built, its conformation.",
+  "section": "inspect"
+ },
+ "inspect-compare-map": {
+  "caption": "A relaxed model fitted into a cryo-EM density map, the map's contour drawn as dots.",
+  "section": "inspect"
+ },
+ "inspect-compare-structure": {
+  "caption": "A relaxed tile compared with its deposited structure. The reference is drawn in pale lilac over the model, and each nucleotide is colored by its distance to it.",
+  "section": "inspect"
+ },
+ "inspect-drawn-relaxed": {
+  "caption": "A relaxed run with Drawn chosen in the toolbar. The view shows the shape the relax started from, in the same frame as the relaxed structure, and clashes are hidden.",
+  "section": "inspect"
+ },
+ "inspect-flexibility": {
+  "caption": "Color by flexibility. Teal to red is the thermal fluctuation of each nucleotide on a log scale, from the 2nd to the 98th percentile; the caption gives both ends in nm.",
+  "section": "inspect"
+ },
+ "inspect-runs": {
+  "caption": "The session's runs, with the comparison of two of them opened by compare to.",
+  "section": "inspect"
+ },
+ "inspect-thermal-motion": {
+  "caption": "Thermal motion. The relaxed structure swings along its softest collective motions; the knob in View options sets how far.",
+  "section": "inspect"
+ },
+ "inspect-this-run": {
+  "caption": "This run. The metrics of the run on screen, then the kissing loops, counted by outcome and listed one by one with gap, twist error and outcome.",
+  "section": "inspect"
+ },
+ "open-drawn": {
+  "caption": "A design just opened, drawn as pyFuRNAce drew it. The label under the view reads AS DRAWN, and loop handles mark the loops that still need a role.",
+  "section": "open"
+ },
+ "open-formats": {
+  "caption": "Open... and, under it, the kinds of file it reads.",
+  "section": "open"
+ },
+ "open-import": {
+  "caption": "The Import structure window for a deposited structure, with the patches, the dot-bracket, the kissing loops and locked regions to keep or decline, and the quality of the rebuilt model against the input.",
+  "section": "open"
+ },
+ "open-library": {
+  "caption": "The Open step on the design library. Each card gives a design's size, its kissing loops and its saved setups; typing part of a name filters the cards.",
+  "section": "open"
+ },
+ "start-first-relax": {
+  "caption": "A tile after its first relax. Inspect opens on This run, with the four numbers that judge the result and the kissing-loop table; the label under the view reads RELAXED, run",
+  "section": "getting-started"
+ },
+ "start-settings": {
+  "caption": "Settings, at the foot of the rail, sets how many CPU cores a relax draws on.",
+  "section": "getting-started"
+ },
+ "start-window": {
+  "caption": "The RNAtwine window with a design open. The steps rail runs down the left, the 3D view and its toolbar fill the middle, the side panel on the right holds the page of the step that is on, and the status line runs along the bottom.",
+  "section": "getting-started"
+ },
+ "view-camera": {
+  "caption": "The Camera window. Reset view, the four views along the structure's axes, the turntable, and the lighting with its lamp dial and three knobs.",
+  "section": "view"
+ },
+ "view-coarse": {
+  "caption": "The coarse view, one sphere per nucleotide, with base pairs, kissing-loop bonds and crossovers drawn as rods.",
+  "section": "view"
+ },
+ "view-full-atom": {
+  "caption": "The full-atom view of the relaxed structure, in ball-and-stick.",
+  "section": "view"
+ },
+ "view-options": {
+  "caption": "The View options window. The caption of the color mode, the model's size and style, what is shown, and the thermal-motion knob.",
+  "section": "view"
+ },
+ "view-themes": {
+  "caption": "One design on the light ground and on the dark one. On paper the model's outline is darkened and its palest colors deepened.",
+  "section": "view"
+ },
+ "view-toolbar": {
+  "caption": "The toolbar over the view. On the left, what is drawn (Drawn or Relaxed, and Coarse, Twine or Full atom); on the right, how (Color, Thermal motion, View options, Camera).",
+  "section": "view"
+ },
+ "view-tube": {
+  "caption": "The twine as plain tubes (View options).",
+  "section": "view"
+ },
+ "view-twine": {
+  "caption": "The twine view. Each strand is one tube shaded as three-ply laid twine.",
+  "section": "view"
+ }
+}

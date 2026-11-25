@@ -1,0 +1,113 @@
+---
+title: Troubleshooting and FAQ
+order: 10
+summary: What a message means and what to do about it, from loops without a role to unsaved runs and fits to a map.
+figures:
+  - name: faq-no-role
+    caption: A relax that does not start because a loop has no role, with (1) the reason over the Build page, (2) the loop waiting under Needs a decision and (3) the count in the status line.
+  - name: faq-unsaved-badge
+    caption: The badge on the Export step counting the runs not yet saved.
+---
+
+## The relax does not start because loops have no role
+
+<Figure name="faq-no-role" />
+
+The relax starts only when every kissing loop has a role, and a loop that the drawing leaves open has none unless the assembly joins it ([Loop roles](../concepts/#loop-roles)).
+Set each loop under **Needs a decision** in Build's **Kissing loops** table to **close**, **open** or **join**, or set them all with **Set all**, and click **Save roles with design** so that later runs keep the roles.
+On the command line, give `--role KEY=ROLE`, or save the roles with `rnatwine loops <design> --role KEY=ROLE --save`.
+
+## Edit says "Not relaxed: loops with no role."
+
+A loop that had no role when editing began holds back the relax after each edit, and the role you give it in the panel is saved with the design ([Edit](../edit/#loop-roles-during-edits)).
+
+## I have runs that are not saved
+
+<Figure name="faq-unsaved-badge" />
+
+**Save all unsaved...** in Export writes every unsaved run into a folder at once, and <kbd>Cmd</kbd>+<kbd>S</kbd> (<kbd>Ctrl</kbd>+<kbd>S</kbd>) saves the run on screen.
+Unsaved runs are lost when you open another design or when they drop out of the session's list ([Runs and run files](../export/#runs-and-run-files)), so save before you switch designs.
+
+## The relax ended before it converged
+
+The metrics in [Inspect](../inspect/#metrics) say so in red, and the termination is a label other than `converged`.
+The structure is the answer of the relax, but its energy is not that of a minimum, so do not compare it with the energies of converged runs.
+
+Because a relax usually fails to converge when the design's energy landscape is rugged, with many shallow minima close together, the remedy to try is to adjust the design in [Edit](../edit/) and relax it again.
+
+## A loop is not formed although it looks closed
+
+Because "KL formed" tests twist register and not distance, a loop closed in distance can still be out of register, which the table in [Inspect](../inspect/#kissing-loops) calls mis-registered and shows with its gap and twist error.
+
+## Thermal motion or Full atom is grayed
+
+The tooltip of a grayed button gives the reason, so hover over it first.
+[Thermal motion](../inspect/#thermal-motion) lists what the motion needs, and **Full atom** needs a relaxed run, so it is grayed until the first relax.
+
+## The colors are gray
+
+Gray marks what the color mode in use cannot color: with flexibility, anything but the latest relaxed structure, and with **vs reference**, the nucleotides that the comparison did not match ([Colors](../inspect/#colors)).
+
+## pyFuRNAce was not found
+
+Your own pyFuRNAce is needed for two things: to open a pyFuRNAce `.json` that has no up-to-date export beside it, and to write the `.json` of an edited design.
+The message lists each Python the app tried ([A pyFuRNAce .json](../open/#a-pyfurnace-json)), and the fix is to give the path of the Python that has pyFuRNAce under **Where pyFuRNAce is** in Edit.
+Everything else works without pyFuRNAce: open the design's `.dat` instead of its `.json`.
+
+## A design does not open
+
+The card of the design in Open gives the reason, and since a design needs at least its `.dat` and its `.txt`, side by side under one name, a group of files that lacks one of them is listed as incomplete.
+
+## The energies of two runs cannot be compared
+
+Because the parameters change what the energy measures, energies can be compared only between runs of the same design under the same parameters.
+The run comparison in Inspect marks such energies as not comparable, and such runs are compared instead by their convergence, clashes, loops formed and fit to a structure.
+
+## A run file opens with "scored ... under this version (saved ...)"
+
+The run was saved by another version of RNAtwine, whose model gives a different energy at the same coordinates, so relax the design again to get a result of this version.
+
+## Relax into map asks for the map's resolution
+
+The blur of the map and the weight of the map term depend on the resolution, and the field is filled in only when an EMDB header beside the map (`emd-N.xml`) or a header label states it.
+Type the resolution from the map's EMDB entry, or put the entry's header file beside the map, and on the command line give `--map-resolution`.
+
+## Models of one map came out in opposite hands
+
+The fit by shape chooses a hand for each model, and at low resolution the arrangement of a large design can fit the wrong hand better.
+Since a map has one hand, set **Hand** (`--map-hand`) to the hand that the map's deposited model sits in, so that every model compared in that map takes the same one.
+
+## The fitted PDB does not lie on the map in ChimeraX
+
+When the hand is the mirror image, the PDB is in the frame of the map's mirror image, so run `volume flip #1 axis x` on the map and look at the PDB in the flipped map ([Export](../export/#structures-of-a-run-relaxed-into-a-map)).
+The line above Export's buttons and the `MAP FRAME` records say which frame a file is in.
+A PDB that had to be moved to fit PDB's columns no longer lies on the map, as the status line says when it is written, so write mmCIF instead.
+
+## The relax into a map turned helix steps left-handed
+
+The `handedness` line of the block counts the stacked steps that the map pulled through to left-handed, which means that the map's weight is too strong for it.
+Keep **Noise** at residual and lower the **Weight scale** ([Judging a fit](../inspect/#judging-a-fit)).
+
+## A map with a mask or a flattened solvent
+
+A masked or post-processed map has little or no noise left in its solvent, and a weight read from the solvent's noise would then be far too strong.
+The default noise, **residual**, is read from what the placed model leaves of the map within its reach, so the solvent's spread does not set it, and the exact zeros of a mask are left out of the solvent, as the `noise` line counts.
+So keep **residual** for such a map, and use **solvent** only for a map whose solvent keeps its noise.
+
+## Save is grayed for a run relaxed into a map
+
+A run file does not store the relax into a map, so such a run is kept by writing its fitted structures in Export ([Keeping the result](../inspect/#keeping-the-result)).
+
+## The design opens labeled AS IMPORTED
+
+The view shows the coordinates of the imported structure until a relax puts its kissing loops and stems on the model ([Importing an experimental structure](../open/#importing-an-experimental-structure)).
+
+## The design is no longer in view
+
+**Reset view** in the Camera window frames the whole design again.
+
+## The relax takes much longer than expected
+
+When a relax runs past its usual range, the strip under Relax says so ([Relax](../build/#relax)).
+Designs of one size differ that much in how long they take, and assemblies run several relaxes to search their starts and states.
+More CPU cores in **Settings** let those searches run more relaxes at once.

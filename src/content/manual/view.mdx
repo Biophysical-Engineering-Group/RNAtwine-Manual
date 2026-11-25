@@ -1,0 +1,108 @@
+---
+title: View
+order: 7
+summary: The 3D view and its toolbar, the three representations, View options, the Camera window with its lighting, and the light and dark themes.
+figures:
+  - name: view-toolbar
+    caption: The toolbar over the 3D view, with what is drawn in its top row and how it is drawn in its bottom row.
+  - name: view-coarse
+    caption: The coarse view, with base pairs, kissing-loop bonds and crossovers drawn as rods.
+  - name: view-twine
+    caption: The twine view, with each strand drawn as one tube.
+  - name: view-full-atom
+    caption: The full-atom view of the relaxed structure, in ball-and-stick.
+  - name: view-options
+    caption: The View options window.
+  - name: view-camera
+    caption: The Camera window, with its views, the turntable and the lighting.
+  - name: view-themes
+    caption: One design on the light background and on the dark one.
+---
+
+## The toolbar
+
+<Figure name="view-toolbar" />
+
+On the left, the toolbar over the 3D view chooses what is drawn: **Drawn** or **Relaxed** ([Inspect](../inspect/#drawn-or-relaxed)) and the representation, **Coarse**, **Twine** or **Full atom**.
+On the right it chooses how it is drawn, with the **Color** menu ([Colors](../inspect/#colors)), **Thermal motion** ([Thermal motion](../inspect/#thermal-motion)), **View options** and **Camera**.
+Every control is always there, and a control that cannot act is grayed, with a tooltip that says why.
+
+The label under the view names the picture: `AS DRAWN`, `AS IMPORTED`, `RELAXING (stage): iteration n`, `RELAXED, run #n`, `QUICK RELAX, run #n`, `EDITED (n edits), not yet relaxed` or `BLOCKS PLACED (n blocks, m copies), not yet relaxed`.
+The label of a run under parameters other than the standard ones names those parameters.
+
+## Moving the view
+
+Drag to turn the structure, right-drag or shift-drag to move it, scroll or pinch to zoom, and click a nucleotide to select it ([Selecting a nucleotide](../inspect/#selecting-a-nucleotide)).
+So that the design cannot be lost from view, zoom stays between 0.05 and 20 times the distance that frames the whole design, and **Reset view** in the Camera window frames it again.
+
+## Coarse, twine and full atom
+
+<Figure name="view-coarse" />
+
+**Coarse** draws each nucleotide as a sphere, and the base pairs, kissing loops, crossovers and clashes are drawn unless View options hides them.
+
+<Figure name="view-twine" />
+
+**Twine** draws the same coordinates with each strand as one smooth tube through its nucleotides, shaded as three-ply laid twine, and the base pairs and kissing-loop bonds as thin rods.
+Because the twine takes several times as long as the coarse view to draw, it is a style for still pictures, although clicking a nucleotide works as in the coarse view.
+
+<Figure name="view-full-atom" />
+
+**Full atom** draws the all-atom structure of the run on screen in ball-and-stick, relaxed or drawn as the switch says, and so it needs a relaxed run.
+It is built the first time you choose it and kept for the run, and **Cancel build** stops a build, which then keeps nothing.
+Each structure takes about 2 kB of memory per nucleotide, so a 100,000-nucleotide tube holds about 0.4 GB for both geometries.
+
+## View options
+
+<Figure name="view-options" />
+
+**View options** opens a window under the toolbar with the same sections in every representation.
+
+- At the top, the caption of the color mode in use says what the colors mean and gives the ends of the scale.
+- **Model**: a size and a style, whose meaning depends on the representation.
+  For the coarse view they set the radius of the spheres (nm), and for the twine its thickness relative to the default and its style, laid **rope** or smooth **tube**.
+  For the full-atom view they set the size of the balls and their coloring, by element or by nucleotide.
+- **Show** sets which of these are drawn besides the nucleotides:
+  - **loop labels**, the kissing-loop keys and handles over the view
+  - **base pairs**
+  - **loop bonds**, the kissing-loop pairs, colored by outcome
+  - **bKL bonds**, the pairs of undeclared branched kissing loops
+  - **crossovers** and **clashes**
+  - **drawn model**, the design as drawn, as a pale overlay
+  - **dim the rest**, which fades all but a selection
+- **Thermal motion**: the knob that sets the swing ([Thermal motion](../inspect/#thermal-motion))
+
+## Camera
+
+<Figure name="view-camera" />
+
+**Camera** opens a window with these controls in the same place as View options, and each window replaces the other:
+
+- **Reset view**, which frames the whole design again and moves the camera and nothing else
+- **Look**: **Front** (the structure's front, upright), **Long axis** (down the structure's long axis), **Second axis** and **Quarter roll** (the view rolled a quarter turn)
+- **Turntable**, which turns the view slowly about the vertical, at a speed from 5 to 90 degrees a second (23 to start)
+- **Lighting** ([below](#lighting))
+
+### Lighting
+
+Because the lighting controls show no scales, hover over a control to see its value.
+Drag the brass lamp on the ivory dial to move the light.
+Its angle around the dial sets the direction the light comes from, with 90 degrees lighting from above, and its distance in from the rim sets how high it stands, from grazing at the rim to head-on in the middle.
+The scroll wheel turns the lamp around the dial, the arrow keys move it once the dial is clicked, and a double click returns the light to its default direction.
+
+Three small knobs, each from 0 to 1, shape the light on the background now on screen, and the other theme keeps its own values:
+
+- **fill**: how light the side turned away from the light is
+- **rim**: the light added at the outline
+- **outline**: how far the outline is darkened
+
+A double click returns a knob to its default, and the push-button returns the direction and both themes to the defaults.
+The lighting lasts the session and is not saved, and an exported image uses it.
+
+## Themes
+
+<Figure name="view-themes" />
+
+Because the model's colors are chosen against a dark background, the app always opens in the dark theme, even when the system is set to light, and the switch at the foot of the rail changes it.
+So that the model stands out on the light background, it is drawn differently there: the outline is darkened like a pen line instead of lit, and the shadowed side is lighter.
+Pale colors, such as the grays, the straw and the gold of the selection, are deepened in proportion to their lightness, while saturated colors keep their full strength.

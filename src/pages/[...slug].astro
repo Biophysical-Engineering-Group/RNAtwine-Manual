@@ -1,0 +1,59 @@
+---
+// One page of the manual per entry of src/content/manual, at /<slug>/.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Doc from '../layouts/Doc.astro';
+import Figure from '../components/Figure.astro';
+import Todo from '../components/Todo.astro';
+import Note from '../components/Note.astro';
+import ratios from '../data/image-ratios.json';
+
+export async function getStaticPaths() {
+  const pages = (await getCollection('manual')).sort((a, b) => a.data.order - b.data.order);
+  return pages.map((entry, i) => ({
+    params: { slug: entry.slug },
+    props: { entry, prev: pages[i - 1], next: pages[i + 1] },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'manual'>;
+  prev?: CollectionEntry<'manual'>;
+  next?: CollectionEntry<'manual'>;
+}
+const { entry, prev, next } = Astro.props;
+const { Content, headings } = await entry.render();
+
+let base = import.meta.env.BASE_URL;
+if (!base.endsWith('/')) base += '/';
+const R = ratios as Record<string, unknown>;
+const captured = (n: string) => Boolean(R[`${n}-light`] || R[`${n}-dark`] || R[n]);
+const figs = entry.data.figures;
+const pending = figs.filter((f) => !captured(f.name)).length;
+---
+<Doc title={entry.data.title} description={entry.data.summary} current={entry.slug} headings={headings}>
+  <article class="prose">
+    <p class="eyebrow">{entry.data.step ? `Step ${entry.data.step} of 5` : 'RNAtwine manual'}</p>
+    <h1>{entry.data.title}</h1>
+    <p class="lede">{entry.data.summary}</p>
+    <Content components={{ Figure, Todo, Note }} />
+
+    {figs.length > 0 && (
+      <details class="slots">
+        <summary>Screen captures on this page: {figs.length}{pending > 0 ? `, ${pending} pending` : ''}</summary>
+        <ol>
+          {figs.map((f) => (
+            <li>
+              <a href={`#fig-${f.name}`}><code>{f.name}</code></a>
+              <span class:list={['slot-state', { done: captured(f.name) }]}>{captured(f.name) ? 'captured' : 'pending'}</span>
+              <span class="slot-cap">{f.caption}</span>
+            </li>
+          ))}
+        </ol>
+      </details>
+    )}
+  </article>
+  <nav class="pager" aria-label="Previous and next page">
+    {prev ? <a class="prev" href={`${base}${prev.slug}/`}><small>Previous</small><span>{prev.data.title}</span></a> : <span />}
+    {next ? <a class="next" href={`${base}${next.slug}/`}><small>Next</small><span>{next.data.title}</span></a> : <span />}
+  </nav>
+</Doc>

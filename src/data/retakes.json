@@ -1,0 +1,8 @@
+{
+ "note": "Slots waiting for a new capture: their figures show a \"retake pending\" tag in the caption (Figure.astro). The three relax-into-map slots below show CPU previews until the GPU capture is in; remove a slot when its new capture is in.",
+ "slots": {
+  "inspect-relax-into-map": "CPU preview (2026-11-25): drawn by the CPU raster, the twine as plain tubes, since the capture had no GPU. Recapture on the Mac with the GPU, then remove this entry.",
+  "inspect-map-run": "CPU preview (2026-11-25): drawn by the CPU raster, the twine as plain tubes, since the capture had no GPU. Recapture on the Mac with the GPU, then remove this entry.",
+  "export-map-structures": "CPU preview (2026-11-25): drawn by the CPU raster, the twine as plain tubes, since the capture had no GPU. Recapture on the Mac with the GPU, then remove this entry."
+ }
+}

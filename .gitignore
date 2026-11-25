@@ -1,0 +1,19 @@
+# build output and dependencies
+dist/
+node_modules/
+.astro/
+
+# scratch (npm cache, previews, link reports)
+tmp/
+
+# logs
+*.log
+npm-debug.log*
+
+# environment
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store

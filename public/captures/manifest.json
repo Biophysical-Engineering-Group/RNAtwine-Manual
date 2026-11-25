@@ -1,0 +1,705 @@
+{
+ "note": "The capture manifest (captures/manual/manifest.json, 2026-11-19 23:18) as a list under \"captures\", which make-web-images.py reads; only name, file, section, caption and theme are kept.",
+ "captures": [
+  {
+   "name": "open-library-light",
+   "file": "open-library-light.png",
+   "section": "open",
+   "caption": "The Open step on the design library. Each card gives a design's size, its kissing loops and its saved setups; typing part of a name filters the cards.",
+   "theme": "light"
+  },
+  {
+   "name": "open-library-dark",
+   "file": "open-library-dark.png",
+   "section": "open",
+   "caption": "The Open step on the design library. Each card gives a design's size, its kissing loops and its saved setups; typing part of a name filters the cards.",
+   "theme": "dark"
+  },
+  {
+   "name": "open-formats-light",
+   "file": "open-formats-light.png",
+   "section": "open",
+   "caption": "Open... and, under it, the kinds of file it reads.",
+   "theme": "light"
+  },
+  {
+   "name": "open-formats-dark",
+   "file": "open-formats-dark.png",
+   "section": "open",
+   "caption": "Open... and, under it, the kinds of file it reads.",
+   "theme": "dark"
+  },
+  {
+   "name": "open-drawn-light",
+   "file": "open-drawn-light.png",
+   "section": "open",
+   "caption": "A design just opened, drawn as pyFuRNAce drew it. The label under the view reads AS DRAWN, and loop handles mark the loops that still need a role.",
+   "theme": "light"
+  },
+  {
+   "name": "open-drawn-dark",
+   "file": "open-drawn-dark.png",
+   "section": "open",
+   "caption": "A design just opened, drawn as pyFuRNAce drew it. The label under the view reads AS DRAWN, and loop handles mark the loops that still need a role.",
+   "theme": "dark"
+  },
+  {
+   "name": "start-window-light",
+   "file": "start-window-light.png",
+   "section": "getting-started",
+   "caption": "The RNAtwine window with a design open. The steps rail runs down the left, the 3D view and its toolbar fill the middle, the side panel on the right holds the page of the step that is on, and the status line runs along the bottom.",
+   "theme": "light"
+  },
+  {
+   "name": "start-window-dark",
+   "file": "start-window-dark.png",
+   "section": "getting-started",
+   "caption": "The RNAtwine window with a design open. The steps rail runs down the left, the 3D view and its toolbar fill the middle, the side panel on the right holds the page of the step that is on, and the status line runs along the bottom.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-setups-light",
+   "file": "build-setups-light.png",
+   "section": "build",
+   "caption": "The Build start screen. One card for each kind of setup, with what it relaxes, and the design's saved setups below them.",
+   "theme": "light"
+  },
+  {
+   "name": "build-setups-dark",
+   "file": "build-setups-dark.png",
+   "section": "build",
+   "caption": "The Build start screen. One card for each kind of setup, with what it relaxes, and the design's saved setups below them.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-loops-light",
+   "file": "build-loops-light.png",
+   "section": "build",
+   "caption": "The Kissing loops table. Loops the drawing leaves open come first under Needs a decision, each with its role switch (close, open, join), the isomer toggle and its drawn gap; the loops drawn closed are folded below.",
+   "theme": "light"
+  },
+  {
+   "name": "build-loops-dark",
+   "file": "build-loops-dark.png",
+   "section": "build",
+   "caption": "The Kissing loops table. Loops the drawing leaves open come first under Needs a decision, each with its role switch (close, open, join), the isomer toggle and its drawn gap; the loops drawn closed are folded below.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-handles-light",
+   "file": "build-handles-light.png",
+   "section": "build",
+   "caption": "Loop handles over the view. A filled sapphire disc closes, a hollow one is left open, a gold one joins copies, and a dashed disc with a question mark still needs a role. The loop under the pointer shows its role and a dashed arc to its other half.",
+   "theme": "light"
+  },
+  {
+   "name": "build-handles-dark",
+   "file": "build-handles-dark.png",
+   "section": "build",
+   "caption": "Loop handles over the view. A filled sapphire disc closes, a hollow one is left open, a gold one joins copies, and a dashed disc with a question mark still needs a role. The loop under the pointer shows its role and a dashed arc to its other half.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-loop-pinned-light",
+   "file": "build-loop-pinned-light.png",
+   "section": "build",
+   "caption": "A loop pinned by a click on its handle: highlighted in the view and found in the loop table.",
+   "theme": "light"
+  },
+  {
+   "name": "build-loop-pinned-dark",
+   "file": "build-loop-pinned-dark.png",
+   "section": "build",
+   "caption": "A loop pinned by a click on its handle: highlighted in the view and found in the loop table.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-lattice-light",
+   "file": "build-lattice-light.png",
+   "section": "build",
+   "caption": "Tube or sheet. The shape, the sites to the rows above and below, the rows and the tiles along each row, the seam, the face turned out and the start.",
+   "theme": "light"
+  },
+  {
+   "name": "build-lattice-dark",
+   "file": "build-lattice-dark.png",
+   "section": "build",
+   "caption": "Tube or sheet. The shape, the sites to the rows above and below, the rows and the tiles along each row, the seam, the face turned out and the start.",
+   "theme": "dark"
+  },
+  {
+   "name": "edit-start-light",
+   "file": "edit-start-light.png",
+   "section": "edit",
+   "caption": "The Edit step before editing, with Start editing and, for a pyFuRNAce design, whether the saved design will get its pyFuRNAce .json.",
+   "theme": "light"
+  },
+  {
+   "name": "edit-start-dark",
+   "file": "edit-start-dark.png",
+   "section": "edit",
+   "caption": "The Edit step before editing, with Start editing and, for a pyFuRNAce design, whether the saved design will get its pyFuRNAce .json.",
+   "theme": "dark"
+  },
+  {
+   "name": "edit-stem-light",
+   "file": "edit-stem-light.png",
+   "section": "edit",
+   "caption": "A paired nucleotide selected in Edit. The panel names it and its helix, with -1 bp and +1 bp, +1 nt for a bulge, the base pair to add, and the options for relaxing after each edit.",
+   "theme": "light"
+  },
+  {
+   "name": "edit-stem-dark",
+   "file": "edit-stem-dark.png",
+   "section": "edit",
+   "caption": "A paired nucleotide selected in Edit. The panel names it and its helix, with -1 bp and +1 bp, +1 nt for a bulge, the base pair to add, and the options for relaxing after each edit.",
+   "theme": "dark"
+  },
+  {
+   "name": "edit-slide-light",
+   "file": "edit-slide-light.png",
+   "section": "edit",
+   "caption": "A kissing loop selected through its handle, with Slide +1 bp and Slide -1 bp, which move one pair from one hairpin stem to the other.",
+   "theme": "light"
+  },
+  {
+   "name": "edit-slide-dark",
+   "file": "edit-slide-dark.png",
+   "section": "edit",
+   "caption": "A kissing loop selected through its handle, with Slide +1 bp and Slide -1 bp, which move one pair from one hairpin stem to the other.",
+   "theme": "dark"
+  },
+  {
+   "name": "edit-save-light",
+   "file": "edit-save-light.png",
+   "section": "edit",
+   "caption": "Saving the edited design as a new folder beside the original.",
+   "theme": "light"
+  },
+  {
+   "name": "edit-save-dark",
+   "file": "edit-save-dark.png",
+   "section": "edit",
+   "caption": "Saving the edited design as a new folder beside the original.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-dimer-light",
+   "file": "build-dimer-light.png",
+   "section": "build",
+   "caption": "Build > Dimer, ring or chain from the saved type-1 dimer setup: two copies joined reciprocally through loop 5.",
+   "theme": "light"
+  },
+  {
+   "name": "build-dimer-dark",
+   "file": "build-dimer-dark.png",
+   "section": "build",
+   "caption": "Build > Dimer, ring or chain from the saved type-1 dimer setup: two copies joined reciprocally through loop 5.",
+   "theme": "dark"
+  },
+  {
+   "name": "start-first-relax-light",
+   "file": "start-first-relax-light.png",
+   "section": "getting-started",
+   "caption": "A tile after its first relax. Inspect opens on This run, with the four numbers that judge the result and the kissing-loop table; the label under the view reads RELAXED, run",
+   "theme": "light"
+  },
+  {
+   "name": "start-first-relax-dark",
+   "file": "start-first-relax-dark.png",
+   "section": "getting-started",
+   "caption": "A tile after its first relax. Inspect opens on This run, with the four numbers that judge the result and the kissing-loop table; the label under the view reads RELAXED, run",
+   "theme": "dark"
+  },
+  {
+   "name": "start-settings-light",
+   "file": "start-settings-light.png",
+   "section": "getting-started",
+   "caption": "Settings, at the foot of the rail, sets how many CPU cores a relax draws on.",
+   "theme": "light"
+  },
+  {
+   "name": "start-settings-dark",
+   "file": "start-settings-dark.png",
+   "section": "getting-started",
+   "caption": "Settings, at the foot of the rail, sets how many CPU cores a relax draws on.",
+   "theme": "dark"
+  },
+  {
+   "name": "faq-unsaved-badge-light",
+   "file": "faq-unsaved-badge-light.png",
+   "section": "troubleshooting",
+   "caption": "The badge on the Export step counting the runs not yet saved.",
+   "theme": "light"
+  },
+  {
+   "name": "faq-unsaved-badge-dark",
+   "file": "faq-unsaved-badge-dark.png",
+   "section": "troubleshooting",
+   "caption": "The badge on the Export step counting the runs not yet saved.",
+   "theme": "dark"
+  },
+  {
+   "name": "export-quit-light",
+   "file": "export-quit-light.png",
+   "section": "export",
+   "caption": "Closing the window with unsaved runs. The dialog offers Go to Export, Quit without saving or Cancel.",
+   "theme": "light"
+  },
+  {
+   "name": "export-quit-dark",
+   "file": "export-quit-dark.png",
+   "section": "export",
+   "caption": "Closing the window with unsaved runs. The dialog offers Go to Export, Quit without saving or Cancel.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-relax-progress-light",
+   "file": "build-relax-progress-light.png",
+   "section": "build",
+   "caption": "A relax in progress. The twine bar shows how far the whole run has come; under it, what is relaxing and its stage, the time so far against the time expected, Cancel relax and the folded Details.",
+   "theme": "light"
+  },
+  {
+   "name": "build-relax-progress-dark",
+   "file": "build-relax-progress-dark.png",
+   "section": "build",
+   "caption": "A relax in progress. The twine bar shows how far the whole run has come; under it, what is relaxing and its stage, the time so far against the time expected, Cancel relax and the folded Details.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-this-run-light",
+   "file": "inspect-this-run-light.png",
+   "section": "inspect",
+   "caption": "This run. The metrics of the run on screen, then the kissing loops, counted by outcome and listed one by one with gap, twist error and outcome.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-this-run-dark",
+   "file": "inspect-this-run-dark.png",
+   "section": "inspect",
+   "caption": "This run. The metrics of the run on screen, then the kissing loops, counted by outcome and listed one by one with gap, twist error and outcome.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-drawn-relaxed-light",
+   "file": "inspect-drawn-relaxed-light.png",
+   "section": "inspect",
+   "caption": "A relaxed run with Drawn chosen in the toolbar. The view shows the shape the relax started from, in the same frame as the relaxed structure, and clashes are hidden.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-drawn-relaxed-dark",
+   "file": "inspect-drawn-relaxed-dark.png",
+   "section": "inspect",
+   "caption": "A relaxed run with Drawn chosen in the toolbar. The view shows the shape the relax started from, in the same frame as the relaxed structure, and clashes are hidden.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-card-light",
+   "file": "inspect-card-light.png",
+   "section": "inspect",
+   "caption": "The card of a selected paired nucleotide. The selection is gold and its partner sky blue; the card gives the pair, the context along the strand, how far the relax moved the nucleotide and, with full atoms built, its conformation.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-card-dark",
+   "file": "inspect-card-dark.png",
+   "section": "inspect",
+   "caption": "The card of a selected paired nucleotide. The selection is gold and its partner sky blue; the card gives the pair, the context along the strand, how far the relax moved the nucleotide and, with full atoms built, its conformation.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-flexibility-light",
+   "file": "inspect-flexibility-light.png",
+   "section": "inspect",
+   "caption": "Color by flexibility. Teal to red is the thermal fluctuation of each nucleotide on a log scale, from the 2nd to the 98th percentile; the caption gives both ends in nm.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-flexibility-dark",
+   "file": "inspect-flexibility-dark.png",
+   "section": "inspect",
+   "caption": "Color by flexibility. Teal to red is the thermal fluctuation of each nucleotide on a log scale, from the 2nd to the 98th percentile; the caption gives both ends in nm.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-thermal-motion-light",
+   "file": "inspect-thermal-motion-light.png",
+   "section": "inspect",
+   "caption": "Thermal motion. The relaxed structure swings along its softest collective motions; the knob in View options sets how far.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-thermal-motion-dark",
+   "file": "inspect-thermal-motion-dark.png",
+   "section": "inspect",
+   "caption": "Thermal motion. The relaxed structure swings along its softest collective motions; the knob in View options sets how far.",
+   "theme": "dark"
+  },
+  {
+   "name": "view-toolbar-light",
+   "file": "view-toolbar-light.png",
+   "section": "view",
+   "caption": "The toolbar over the view. On the left, what is drawn (Drawn or Relaxed, and Coarse, Twine or Full atom); on the right, how (Color, Thermal motion, View options, Camera).",
+   "theme": "light"
+  },
+  {
+   "name": "view-toolbar-dark",
+   "file": "view-toolbar-dark.png",
+   "section": "view",
+   "caption": "The toolbar over the view. On the left, what is drawn (Drawn or Relaxed, and Coarse, Twine or Full atom); on the right, how (Color, Thermal motion, View options, Camera).",
+   "theme": "dark"
+  },
+  {
+   "name": "view-coarse-light",
+   "file": "view-coarse-light.png",
+   "section": "view",
+   "caption": "The coarse view, one sphere per nucleotide, with base pairs, kissing-loop bonds and crossovers drawn as rods.",
+   "theme": "light"
+  },
+  {
+   "name": "view-coarse-dark",
+   "file": "view-coarse-dark.png",
+   "section": "view",
+   "caption": "The coarse view, one sphere per nucleotide, with base pairs, kissing-loop bonds and crossovers drawn as rods.",
+   "theme": "dark"
+  },
+  {
+   "name": "view-twine-light",
+   "file": "view-twine-light.png",
+   "section": "view",
+   "caption": "The twine view. Each strand is one tube shaded as three-ply laid twine.",
+   "theme": "light"
+  },
+  {
+   "name": "view-twine-dark",
+   "file": "view-twine-dark.png",
+   "section": "view",
+   "caption": "The twine view. Each strand is one tube shaded as three-ply laid twine.",
+   "theme": "dark"
+  },
+  {
+   "name": "view-tube-light",
+   "file": "view-tube-light.png",
+   "section": "view",
+   "caption": "The twine as plain tubes (View options).",
+   "theme": "light"
+  },
+  {
+   "name": "view-tube-dark",
+   "file": "view-tube-dark.png",
+   "section": "view",
+   "caption": "The twine as plain tubes (View options).",
+   "theme": "dark"
+  },
+  {
+   "name": "view-full-atom-light",
+   "file": "view-full-atom-light.png",
+   "section": "view",
+   "caption": "The full-atom view of the relaxed structure, in ball-and-stick.",
+   "theme": "light"
+  },
+  {
+   "name": "view-full-atom-dark",
+   "file": "view-full-atom-dark.png",
+   "section": "view",
+   "caption": "The full-atom view of the relaxed structure, in ball-and-stick.",
+   "theme": "dark"
+  },
+  {
+   "name": "view-options-light",
+   "file": "view-options-light.png",
+   "section": "view",
+   "caption": "The View options window. The caption of the color mode, the model's size and style, what is shown, and the thermal-motion knob.",
+   "theme": "light"
+  },
+  {
+   "name": "view-options-dark",
+   "file": "view-options-dark.png",
+   "section": "view",
+   "caption": "The View options window. The caption of the color mode, the model's size and style, what is shown, and the thermal-motion knob.",
+   "theme": "dark"
+  },
+  {
+   "name": "view-camera-light",
+   "file": "view-camera-light.png",
+   "section": "view",
+   "caption": "The Camera window. Reset view, the four views along the structure's axes, the turntable, and the lighting with its lamp dial and three knobs.",
+   "theme": "light"
+  },
+  {
+   "name": "view-camera-dark",
+   "file": "view-camera-dark.png",
+   "section": "view",
+   "caption": "The Camera window. Reset view, the four views along the structure's axes, the turntable, and the lighting with its lamp dial and three knobs.",
+   "theme": "dark"
+  },
+  {
+   "name": "view-themes-light",
+   "file": "view-themes-light.png",
+   "section": "view",
+   "caption": "One design on the light ground and on the dark one. On paper the model's outline is darkened and its palest colors deepened.",
+   "theme": "light"
+  },
+  {
+   "name": "view-themes-dark",
+   "file": "view-themes-dark.png",
+   "section": "view",
+   "caption": "One design on the light ground and on the dark one. On paper the model's outline is darkened and its palest colors deepened.",
+   "theme": "dark"
+  },
+  {
+   "name": "concepts-about-light",
+   "file": "concepts-about-light.png",
+   "section": "concepts",
+   "caption": "The About window. What RNAtwine is, its model in three paragraphs, the model's figures and the credits.",
+   "theme": "light"
+  },
+  {
+   "name": "concepts-about-dark",
+   "file": "concepts-about-dark.png",
+   "section": "concepts",
+   "caption": "The About window. What RNAtwine is, its model in three paragraphs, the model's figures and the credits.",
+   "theme": "dark"
+  },
+  {
+   "name": "concepts-loop-closing-light",
+   "file": "concepts-loop-closing-light.png",
+   "section": "concepts",
+   "caption": "A relaxed tile with its drawing as a pale overlay (View options, drawn model). The relax has closed the kissing loops onto their templates and spread the strain through the tile.",
+   "theme": "light"
+  },
+  {
+   "name": "concepts-loop-closing-dark",
+   "file": "concepts-loop-closing-dark.png",
+   "section": "concepts",
+   "caption": "A relaxed tile with its drawing as a pale overlay (View options, drawn model). The relax has closed the kissing loops onto their templates and spread the strain through the tile.",
+   "theme": "dark"
+  },
+  {
+   "name": "colour-plain-light",
+   "file": "colour-plain-light.png",
+   "section": "view",
+   "caption": "Color: plain.",
+   "theme": "light"
+  },
+  {
+   "name": "colour-plain-dark",
+   "file": "colour-plain-dark.png",
+   "section": "view",
+   "caption": "Color: plain.",
+   "theme": "dark"
+  },
+  {
+   "name": "colour-displacement-light",
+   "file": "colour-displacement-light.png",
+   "section": "view",
+   "caption": "Color: displacement from the drawing, percentile-ranked.",
+   "theme": "light"
+  },
+  {
+   "name": "colour-displacement-dark",
+   "file": "colour-displacement-dark.png",
+   "section": "view",
+   "caption": "Color: displacement from the drawing, percentile-ranked.",
+   "theme": "dark"
+  },
+  {
+   "name": "colour-strand-light",
+   "file": "colour-strand-light.png",
+   "section": "view",
+   "caption": "Color: place along each strand, 5' to 3'.",
+   "theme": "light"
+  },
+  {
+   "name": "colour-strand-dark",
+   "file": "colour-strand-dark.png",
+   "section": "view",
+   "caption": "Color: place along each strand, 5' to 3'.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-blocks-light",
+   "file": "build-blocks-light.png",
+   "section": "build",
+   "caption": "From runs. Saved runs as blocks, the joins between blocks, and Place, which fits each block at its joins and shows where the relax would start.",
+   "theme": "light"
+  },
+  {
+   "name": "build-blocks-dark",
+   "file": "build-blocks-dark.png",
+   "section": "build",
+   "caption": "From runs. Saved runs as blocks, the joins between blocks, and Place, which fits each block at its joins and shows where the relax would start.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-compare-structure-light",
+   "file": "inspect-compare-structure-light.png",
+   "section": "inspect",
+   "caption": "A relaxed tile compared with its deposited structure. The reference is drawn in pale lilac over the model, and each nucleotide is colored by its distance to it.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-compare-structure-dark",
+   "file": "inspect-compare-structure-dark.png",
+   "section": "inspect",
+   "caption": "A relaxed tile compared with its deposited structure. The reference is drawn in pale lilac over the model, and each nucleotide is colored by its distance to it.",
+   "theme": "dark"
+  },
+  {
+   "name": "colour-reference-light",
+   "file": "colour-reference-light.png",
+   "section": "view",
+   "caption": "Color: distance from the reference compared with (here 7PTK), the trace off.",
+   "theme": "light"
+  },
+  {
+   "name": "colour-reference-dark",
+   "file": "colour-reference-dark.png",
+   "section": "view",
+   "caption": "Color: distance from the reference compared with (here 7PTK), the trace off.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-runs-light",
+   "file": "inspect-runs-light.png",
+   "section": "inspect",
+   "caption": "The session's runs, with the comparison of two of them opened by compare to.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-runs-dark",
+   "file": "inspect-runs-dark.png",
+   "section": "inspect",
+   "caption": "The session's runs, with the comparison of two of them opened by compare to.",
+   "theme": "dark"
+  },
+  {
+   "name": "export-runs-light",
+   "file": "export-runs-light.png",
+   "section": "export",
+   "caption": "Export's list of the session's runs, each with its energy, how it ended, whether it is saved and whether it is on screen, with View and Save..., and Save all unsaved... below.",
+   "theme": "light"
+  },
+  {
+   "name": "export-runs-dark",
+   "file": "export-runs-dark.png",
+   "section": "export",
+   "caption": "Export's list of the session's runs, each with its energy, how it ended, whether it is saved and whether it is on screen, with View and Save..., and Save all unsaved... below.",
+   "theme": "dark"
+  },
+  {
+   "name": "export-structures-light",
+   "file": "export-structures-light.png",
+   "section": "export",
+   "caption": "Structures of the run on screen. The relaxed .dat, the relaxed pyFuRNAce .json and the full-atom PDB of the geometry chosen over the view.",
+   "theme": "light"
+  },
+  {
+   "name": "export-structures-dark",
+   "file": "export-structures-dark.png",
+   "section": "export",
+   "caption": "Structures of the run on screen. The relaxed .dat, the relaxed pyFuRNAce .json and the full-atom PDB of the geometry chosen over the view.",
+   "theme": "dark"
+  },
+  {
+   "name": "export-image-light",
+   "file": "export-image-light.png",
+   "section": "export",
+   "caption": "The Image and Twine model sections. The image is the view at one, two or four times its size; the twine model is a .glb mesh in the colors on screen.",
+   "theme": "light"
+  },
+  {
+   "name": "export-image-dark",
+   "file": "export-image-dark.png",
+   "section": "export",
+   "caption": "The Image and Twine model sections. The image is the view at one, two or four times its size; the twine model is a .glb mesh in the colors on screen.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-assembly-light",
+   "file": "inspect-assembly-light.png",
+   "section": "inspect",
+   "caption": "An assembly relaxed: the type-1 dimer, its copies in alternate colors, with each joined loop's gap and twist error.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-assembly-dark",
+   "file": "inspect-assembly-dark.png",
+   "section": "inspect",
+   "caption": "An assembly relaxed: the type-1 dimer, its copies in alternate colors, with each joined loop's gap and twist error.",
+   "theme": "dark"
+  },
+  {
+   "name": "build-copies-light",
+   "file": "build-copies-light.png",
+   "section": "build",
+   "caption": "Dimer, ring or chain. The copy count, the topology (ring, chain or strip) and, for each joined site, the site it pairs with on the next copy.",
+   "theme": "light"
+  },
+  {
+   "name": "build-copies-dark",
+   "file": "build-copies-dark.png",
+   "section": "build",
+   "caption": "Dimer, ring or chain. The copy count, the topology (ring, chain or strip) and, for each joined site, the site it pairs with on the next copy.",
+   "theme": "dark"
+  },
+  {
+   "name": "inspect-compare-map-light",
+   "file": "inspect-compare-map-light.png",
+   "section": "inspect",
+   "caption": "A relaxed model fitted into a cryo-EM density map, the map's contour drawn as dots.",
+   "theme": "light"
+  },
+  {
+   "name": "inspect-compare-map-dark",
+   "file": "inspect-compare-map-dark.png",
+   "section": "inspect",
+   "caption": "A relaxed model fitted into a cryo-EM density map, the map's contour drawn as dots.",
+   "theme": "dark"
+  },
+  {
+   "name": "faq-no-role-light",
+   "file": "faq-no-role-light.png",
+   "section": "troubleshooting",
+   "caption": "Relax refused because loops have no role. The loops wait under Needs a decision in Build, marked as needing a role, and the status line counts them.",
+   "theme": "light"
+  },
+  {
+   "name": "faq-no-role-dark",
+   "file": "faq-no-role-dark.png",
+   "section": "troubleshooting",
+   "caption": "Relax refused because loops have no role. The loops wait under Needs a decision in Build, marked as needing a role, and the status line counts them.",
+   "theme": "dark"
+  },
+  {
+   "name": "edit-roles-light",
+   "file": "edit-roles-light.png",
+   "section": "edit",
+   "caption": "An edit held because a loop has no role. Each such loop is listed with its size and the distance between its halves, and three buttons give it a role.",
+   "theme": "light"
+  },
+  {
+   "name": "edit-roles-dark",
+   "file": "edit-roles-dark.png",
+   "section": "edit",
+   "caption": "An edit held because a loop has no role. Each such loop is listed with its size and the distance between its halves, and three buttons give it a role.",
+   "theme": "dark"
+  },
+  {
+   "name": "open-import-light",
+   "file": "open-import-light.png",
+   "section": "open",
+   "caption": "The Import structure window for a deposited structure, with the patches, the dot-bracket, the kissing loops and locked regions to keep or decline, and the quality of the rebuilt model against the input.",
+   "theme": "light"
+  },
+  {
+   "name": "open-import-dark",
+   "file": "open-import-dark.png",
+   "section": "open",
+   "caption": "The Import structure window for a deposited structure, with the patches, the dot-bracket, the kissing loops and locked regions to keep or decline, and the quality of the rebuilt model against the input.",
+   "theme": "dark"
+  }
+ ]
+}

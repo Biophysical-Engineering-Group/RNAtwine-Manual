@@ -1,0 +1,638 @@
+{
+ "build-blocks-dark": {
+  "file": "build-blocks-dark.webp",
+  "full": "build-blocks-dark.png",
+  "h": 964,
+  "w": 938
+ },
+ "build-blocks-light": {
+  "file": "build-blocks-light.webp",
+  "full": "build-blocks-light.png",
+  "h": 964,
+  "w": 938
+ },
+ "build-copies-dark": {
+  "file": "build-copies-dark.webp",
+  "full": "build-copies-dark.png",
+  "h": 484,
+  "w": 938
+ },
+ "build-copies-light": {
+  "file": "build-copies-light.webp",
+  "full": "build-copies-light.png",
+  "h": 484,
+  "w": 938
+ },
+ "build-dimer-dark": {
+  "file": "build-dimer-dark.webp",
+  "full": "build-dimer-dark.png",
+  "h": 1432,
+  "w": 938
+ },
+ "build-dimer-light": {
+  "file": "build-dimer-light.webp",
+  "full": "build-dimer-light.png",
+  "h": 1432,
+  "w": 938
+ },
+ "build-handles-dark": {
+  "file": "build-handles-dark.webp",
+  "full": "build-handles-dark.png",
+  "h": 584,
+  "w": 1380
+ },
+ "build-handles-light": {
+  "file": "build-handles-light.webp",
+  "full": "build-handles-light.png",
+  "h": 584,
+  "w": 1380
+ },
+ "build-lattice-dark": {
+  "file": "build-lattice-dark.webp",
+  "full": "build-lattice-dark.png",
+  "h": 1090,
+  "w": 938
+ },
+ "build-lattice-light": {
+  "file": "build-lattice-light.webp",
+  "full": "build-lattice-light.png",
+  "h": 1090,
+  "w": 938
+ },
+ "build-loop-pinned-dark": {
+  "file": "build-loop-pinned-dark.webp",
+  "full": "build-loop-pinned-dark.png",
+  "h": 714,
+  "w": 1600
+ },
+ "build-loop-pinned-light": {
+  "file": "build-loop-pinned-light.webp",
+  "full": "build-loop-pinned-light.png",
+  "h": 714,
+  "w": 1600
+ },
+ "build-loops-dark": {
+  "file": "build-loops-dark.webp",
+  "full": "build-loops-dark.png",
+  "h": 484,
+  "w": 938
+ },
+ "build-loops-light": {
+  "file": "build-loops-light.webp",
+  "full": "build-loops-light.png",
+  "h": 484,
+  "w": 938
+ },
+ "build-relax-progress-dark": {
+  "file": "build-relax-progress-dark.webp",
+  "full": "build-relax-progress-dark.png",
+  "h": 464,
+  "w": 938
+ },
+ "build-relax-progress-light": {
+  "file": "build-relax-progress-light.webp",
+  "full": "build-relax-progress-light.png",
+  "h": 464,
+  "w": 938
+ },
+ "build-setups-dark": {
+  "file": "build-setups-dark.webp",
+  "full": "build-setups-dark.png",
+  "h": 1212,
+  "w": 938
+ },
+ "build-setups-light": {
+  "file": "build-setups-light.webp",
+  "full": "build-setups-light.png",
+  "h": 1212,
+  "w": 938
+ },
+ "colour-displacement-dark": {
+  "file": "colour-displacement-dark.webp",
+  "full": "colour-displacement-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "colour-displacement-light": {
+  "file": "colour-displacement-light.webp",
+  "full": "colour-displacement-light.png",
+  "h": 880,
+  "w": 1080
+ },
+ "colour-plain-dark": {
+  "file": "colour-plain-dark.webp",
+  "full": "colour-plain-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "colour-plain-light": {
+  "file": "colour-plain-light.webp",
+  "full": "colour-plain-light.png",
+  "h": 880,
+  "w": 1080
+ },
+ "colour-reference-dark": {
+  "file": "colour-reference-dark.webp",
+  "full": "colour-reference-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "colour-reference-light": {
+  "file": "colour-reference-light.webp",
+  "full": "colour-reference-light.png",
+  "h": 880,
+  "w": 1080
+ },
+ "colour-strand-dark": {
+  "file": "colour-strand-dark.webp",
+  "full": "colour-strand-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "colour-strand-light": {
+  "file": "colour-strand-light.webp",
+  "full": "colour-strand-light.png",
+  "h": 880,
+  "w": 1080
+ },
+ "concepts-about-dark": {
+  "file": "concepts-about-dark.webp",
+  "full": "concepts-about-dark.png",
+  "h": 1417,
+  "w": 1600
+ },
+ "concepts-about-light": {
+  "file": "concepts-about-light.webp",
+  "full": "concepts-about-light.png",
+  "h": 1417,
+  "w": 1600
+ },
+ "concepts-loop-closing-dark": {
+  "file": "concepts-loop-closing-dark.webp",
+  "full": "concepts-loop-closing-dark.png",
+  "h": 840,
+  "w": 1080
+ },
+ "concepts-loop-closing-light": {
+  "file": "concepts-loop-closing-light.webp",
+  "full": "concepts-loop-closing-light.png",
+  "h": 840,
+  "w": 1080
+ },
+ "edit-roles-dark": {
+  "file": "edit-roles-dark.webp",
+  "full": "edit-roles-dark.png",
+  "h": 352,
+  "w": 938
+ },
+ "edit-roles-light": {
+  "file": "edit-roles-light.webp",
+  "full": "edit-roles-light.png",
+  "h": 352,
+  "w": 938
+ },
+ "edit-save-dark": {
+  "file": "edit-save-dark.webp",
+  "full": "edit-save-dark.png",
+  "h": 314,
+  "w": 938
+ },
+ "edit-save-light": {
+  "file": "edit-save-light.webp",
+  "full": "edit-save-light.png",
+  "h": 314,
+  "w": 938
+ },
+ "edit-slide-dark": {
+  "file": "edit-slide-dark.webp",
+  "full": "edit-slide-dark.png",
+  "h": 697,
+  "w": 1600
+ },
+ "edit-slide-light": {
+  "file": "edit-slide-light.webp",
+  "full": "edit-slide-light.png",
+  "h": 697,
+  "w": 1600
+ },
+ "edit-start-dark": {
+  "file": "edit-start-dark.webp",
+  "full": "edit-start-dark.png",
+  "h": 352,
+  "w": 938
+ },
+ "edit-start-light": {
+  "file": "edit-start-light.webp",
+  "full": "edit-start-light.png",
+  "h": 352,
+  "w": 938
+ },
+ "edit-stem-dark": {
+  "file": "edit-stem-dark.webp",
+  "full": "edit-stem-dark.png",
+  "h": 463,
+  "w": 1600
+ },
+ "edit-stem-light": {
+  "file": "edit-stem-light.webp",
+  "full": "edit-stem-light.png",
+  "h": 463,
+  "w": 1600
+ },
+ "export-image-dark": {
+  "file": "export-image-dark.webp",
+  "full": "export-image-dark.png",
+  "h": 812,
+  "w": 938
+ },
+ "export-image-light": {
+  "file": "export-image-light.webp",
+  "full": "export-image-light.png",
+  "h": 812,
+  "w": 938
+ },
+ "export-map-structures-dark": {
+  "file": "export-map-structures-dark.webp",
+  "full": "export-map-structures-dark.png",
+  "h": 900,
+  "w": 938
+ },
+ "export-map-structures-light": {
+  "file": "export-map-structures-light.webp",
+  "full": "export-map-structures-light.png",
+  "h": 900,
+  "w": 938
+ },
+ "export-quit-dark": {
+  "file": "export-quit-dark.webp",
+  "full": "export-quit-dark.png",
+  "h": 460,
+  "w": 1000
+ },
+ "export-quit-light": {
+  "file": "export-quit-light.webp",
+  "full": "export-quit-light.png",
+  "h": 460,
+  "w": 1000
+ },
+ "export-runs-dark": {
+  "file": "export-runs-dark.webp",
+  "full": "export-runs-dark.png",
+  "h": 492,
+  "w": 938
+ },
+ "export-runs-light": {
+  "file": "export-runs-light.webp",
+  "full": "export-runs-light.png",
+  "h": 492,
+  "w": 938
+ },
+ "export-structures-dark": {
+  "file": "export-structures-dark.webp",
+  "full": "export-structures-dark.png",
+  "h": 380,
+  "w": 938
+ },
+ "export-structures-light": {
+  "file": "export-structures-light.webp",
+  "full": "export-structures-light.png",
+  "h": 380,
+  "w": 938
+ },
+ "faq-no-role-dark": {
+  "file": "faq-no-role-dark.webp",
+  "full": "faq-no-role-dark.png",
+  "h": 1094,
+  "w": 1600
+ },
+ "faq-no-role-light": {
+  "file": "faq-no-role-light.webp",
+  "full": "faq-no-role-light.png",
+  "h": 1094,
+  "w": 1600
+ },
+ "faq-unsaved-badge-dark": {
+  "file": "faq-unsaved-badge-dark.webp",
+  "full": "faq-unsaved-badge-dark.png",
+  "h": 460,
+  "w": 248
+ },
+ "faq-unsaved-badge-light": {
+  "file": "faq-unsaved-badge-light.webp",
+  "full": "faq-unsaved-badge-light.png",
+  "h": 460,
+  "w": 248
+ },
+ "inspect-assembly-dark": {
+  "file": "inspect-assembly-dark.webp",
+  "full": "inspect-assembly-dark.png",
+  "h": 987,
+  "w": 1600
+ },
+ "inspect-assembly-light": {
+  "file": "inspect-assembly-light.webp",
+  "full": "inspect-assembly-light.png",
+  "h": 987,
+  "w": 1600
+ },
+ "inspect-card-dark": {
+  "file": "inspect-card-dark.webp",
+  "full": "inspect-card-dark.png",
+  "h": 1100,
+  "w": 1412
+ },
+ "inspect-card-light": {
+  "file": "inspect-card-light.webp",
+  "full": "inspect-card-light.png",
+  "h": 1100,
+  "w": 1412
+ },
+ "inspect-compare-map-dark": {
+  "file": "inspect-compare-map-dark.webp",
+  "full": "inspect-compare-map-dark.png",
+  "h": 620,
+  "w": 1400
+ },
+ "inspect-compare-map-light": {
+  "file": "inspect-compare-map-light.webp",
+  "full": "inspect-compare-map-light.png",
+  "h": 620,
+  "w": 1400
+ },
+ "inspect-compare-structure-dark": {
+  "file": "inspect-compare-structure-dark.webp",
+  "full": "inspect-compare-structure-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "inspect-compare-structure-light": {
+  "file": "inspect-compare-structure-light.webp",
+  "full": "inspect-compare-structure-light.png",
+  "h": 880,
+  "w": 1080
+ },
+ "inspect-drawn-relaxed-dark": {
+  "file": "inspect-drawn-relaxed-dark.webp",
+  "full": "inspect-drawn-relaxed-dark.png",
+  "h": 1200,
+  "w": 1352
+ },
+ "inspect-drawn-relaxed-light": {
+  "file": "inspect-drawn-relaxed-light.webp",
+  "full": "inspect-drawn-relaxed-light.png",
+  "h": 1200,
+  "w": 1352
+ },
+ "inspect-flexibility-dark": {
+  "file": "inspect-flexibility-dark.webp",
+  "full": "inspect-flexibility-dark.png",
+  "h": 1248,
+  "w": 1600
+ },
+ "inspect-flexibility-light": {
+  "file": "inspect-flexibility-light.webp",
+  "full": "inspect-flexibility-light.png",
+  "h": 1248,
+  "w": 1600
+ },
+ "inspect-map-run-dark": {
+  "file": "inspect-map-run-dark.webp",
+  "full": "inspect-map-run-dark.png",
+  "h": 1050,
+  "w": 1600
+ },
+ "inspect-map-run-light": {
+  "file": "inspect-map-run-light.webp",
+  "full": "inspect-map-run-light.png",
+  "h": 1050,
+  "w": 1600
+ },
+ "inspect-relax-into-map-dark": {
+  "file": "inspect-relax-into-map-dark.webp",
+  "full": "inspect-relax-into-map-dark.png",
+  "h": 1320,
+  "w": 938
+ },
+ "inspect-relax-into-map-light": {
+  "file": "inspect-relax-into-map-light.webp",
+  "full": "inspect-relax-into-map-light.png",
+  "h": 1320,
+  "w": 938
+ },
+ "inspect-runs-dark": {
+  "file": "inspect-runs-dark.webp",
+  "full": "inspect-runs-dark.png",
+  "h": 1712,
+  "w": 938
+ },
+ "inspect-runs-light": {
+  "file": "inspect-runs-light.webp",
+  "full": "inspect-runs-light.png",
+  "h": 1712,
+  "w": 938
+ },
+ "inspect-thermal-motion-dark": {
+  "file": "inspect-thermal-motion-dark.webp",
+  "full": "inspect-thermal-motion-dark.png",
+  "h": 1437,
+  "w": 1600
+ },
+ "inspect-thermal-motion-light": {
+  "file": "inspect-thermal-motion-light.webp",
+  "full": "inspect-thermal-motion-light.png",
+  "h": 1437,
+  "w": 1600
+ },
+ "inspect-this-run-dark": {
+  "file": "inspect-this-run-dark.webp",
+  "full": "inspect-this-run-dark.png",
+  "h": 1628,
+  "w": 938
+ },
+ "inspect-this-run-light": {
+  "file": "inspect-this-run-light.webp",
+  "full": "inspect-this-run-light.png",
+  "h": 1628,
+  "w": 938
+ },
+ "open-drawn-dark": {
+  "file": "open-drawn-dark.webp",
+  "full": "open-drawn-dark.png",
+  "h": 676,
+  "w": 1008
+ },
+ "open-drawn-light": {
+  "file": "open-drawn-light.webp",
+  "full": "open-drawn-light.png",
+  "h": 676,
+  "w": 1008
+ },
+ "open-formats-dark": {
+  "file": "open-formats-dark.webp",
+  "full": "open-formats-dark.png",
+  "h": 384,
+  "w": 938
+ },
+ "open-formats-light": {
+  "file": "open-formats-light.webp",
+  "full": "open-formats-light.png",
+  "h": 384,
+  "w": 938
+ },
+ "open-import-dark": {
+  "file": "open-import-dark.webp",
+  "full": "open-import-dark.png",
+  "h": 1764,
+  "w": 1520
+ },
+ "open-import-light": {
+  "file": "open-import-light.webp",
+  "full": "open-import-light.png",
+  "h": 1764,
+  "w": 1520
+ },
+ "open-library-dark": {
+  "file": "open-library-dark.webp",
+  "full": "open-library-dark.png",
+  "h": 982,
+  "w": 1448
+ },
+ "open-library-light": {
+  "file": "open-library-light.webp",
+  "full": "open-library-light.png",
+  "h": 982,
+  "w": 1448
+ },
+ "start-first-relax-dark": {
+  "file": "start-first-relax-dark.webp",
+  "full": "start-first-relax-dark.png",
+  "h": 1050,
+  "w": 1600
+ },
+ "start-first-relax-light": {
+  "file": "start-first-relax-light.webp",
+  "full": "start-first-relax-light.png",
+  "h": 1050,
+  "w": 1600
+ },
+ "start-settings-dark": {
+  "file": "start-settings-dark.webp",
+  "full": "start-settings-dark.png",
+  "h": 1115,
+  "w": 1600
+ },
+ "start-settings-light": {
+  "file": "start-settings-light.webp",
+  "full": "start-settings-light.png",
+  "h": 1115,
+  "w": 1600
+ },
+ "start-window-dark": {
+  "file": "start-window-dark.webp",
+  "full": "start-window-dark.png",
+  "h": 1000,
+  "w": 1600
+ },
+ "start-window-light": {
+  "file": "start-window-light.webp",
+  "full": "start-window-light.png",
+  "h": 1000,
+  "w": 1600
+ },
+ "view-camera-dark": {
+  "file": "view-camera-dark.webp",
+  "full": "view-camera-dark.png",
+  "h": 1388,
+  "w": 1540
+ },
+ "view-camera-light": {
+  "file": "view-camera-light.webp",
+  "full": "view-camera-light.png",
+  "h": 1388,
+  "w": 1540
+ },
+ "view-coarse-dark": {
+  "file": "view-coarse-dark.webp",
+  "full": "view-coarse-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "view-coarse-light": {
+  "file": "view-coarse-light.webp",
+  "full": "view-coarse-light.png",
+  "h": 880,
+  "w": 1080
+ },
+ "view-full-atom-dark": {
+  "file": "view-full-atom-dark.webp",
+  "full": "view-full-atom-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "view-full-atom-light": {
+  "file": "view-full-atom-light.webp",
+  "full": "view-full-atom-light.png",
+  "h": 880,
+  "w": 1080
+ },
+ "view-options-dark": {
+  "file": "view-options-dark.webp",
+  "full": "view-options-dark.png",
+  "h": 1304,
+  "w": 1336
+ },
+ "view-options-light": {
+  "file": "view-options-light.webp",
+  "full": "view-options-light.png",
+  "h": 1304,
+  "w": 1336
+ },
+ "view-themes-dark": {
+  "file": "view-themes-dark.webp",
+  "full": "view-themes-dark.png",
+  "h": 737,
+  "w": 1600
+ },
+ "view-themes-light": {
+  "file": "view-themes-light.webp",
+  "full": "view-themes-light.png",
+  "h": 737,
+  "w": 1600
+ },
+ "view-toolbar-dark": {
+  "file": "view-toolbar-dark.webp",
+  "full": "view-toolbar-dark.png",
+  "h": 212,
+  "w": 1180
+ },
+ "view-toolbar-light": {
+  "file": "view-toolbar-light.webp",
+  "full": "view-toolbar-light.png",
+  "h": 212,
+  "w": 1180
+ },
+ "view-tube-dark": {
+  "file": "view-tube-dark.webp",
+  "full": "view-tube-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "view-tube-light": {
+  "file": "view-tube-light.webp",
+  "full": "view-tube-light.png",
+  "h": 880,
+  "w": 1080
+ },
+ "view-twine-dark": {
+  "file": "view-twine-dark.webp",
+  "full": "view-twine-dark.png",
+  "h": 880,
+  "w": 1080
+ },
+ "view-twine-light": {
+  "file": "view-twine-light.webp",
+  "full": "view-twine-light.png",
+  "h": 880,
+  "w": 1080
+ }
+}

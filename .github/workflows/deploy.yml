@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Every push to main publishes the manual.
+  push:
+    branches: [ main ]
+  # Also runnable by hand from the Actions tab.
+  workflow_dispatch:
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push supersedes one still queued.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v5
+      # The Pages address of this repository, whichever account owns it:
+      # https://<owner>.github.io/<repository>/ (the host in lower case, as GitHub serves it).
+      # For a custom domain, set SITE and BASE here instead (BASE '/' for a site of its own).
+      - name: Set the site's address
+        env:
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          echo "SITE=https://${OWNER,,}.github.io" >> "$GITHUB_ENV"
+          echo "BASE=/${REPO}" >> "$GITHUB_ENV"
+      - name: Install, build and upload the site
+        uses: withastro/action@v5
+        with:
+          node-version: 22
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

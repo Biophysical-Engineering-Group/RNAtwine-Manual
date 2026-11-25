@@ -1,0 +1,104 @@
+---
+// The manual's first page: what RNAtwine is, with a rendered hero and three features, and the
+// contents. The illustrations come from the app's render mode (see components/Art.astro); until
+// they exist the page reads as text alone.
+import { getCollection } from 'astro:content';
+import Doc from '../layouts/Doc.astro';
+import Art from '../components/Art.astro';
+import art from '../data/landing.json';
+let base = import.meta.env.BASE_URL;
+if (!base.endsWith('/')) base += '/';
+const pages = (await getCollection('manual')).sort((a, b) => a.data.order - b.data.order);
+const steps = pages.filter((p) => p.data.step);
+const first = pages.filter((p) => p.data.order < (steps[0]?.data.order ?? 0));
+const rest = pages.filter((p) => !p.data.step && p.data.order > (steps[0]?.data.order ?? 0));
+const hasHero = Object.keys(art).some((k) => k.startsWith('hero-'));
+const features = [
+  {
+    name: 'feature_relax',
+    title: 'Relax a design',
+    alt: 'The five-helix tile 5HT-B relaxed and colored by how far each nucleotide moved from the drawing',
+    text: 'RNAtwine relaxes a drawn design into a shape the molecule can take in about half a minute for a single structure, and it colors each nucleotide by how far the relax moved it from the drawing.',
+    href: 'getting-started/#a-first-relax-in-five-steps',
+    more: 'A first relax',
+  },
+  {
+    name: 'feature_assemble',
+    title: 'Build assemblies',
+    alt: 'Four copies of a ring tile joined into a ring, drawn as twine',
+    text: 'Copies of a tile join through their connector loops into dimers, rings, chains, tubes and sheets, and relaxed runs can be placed as the blocks of a larger assembly.',
+    href: 'build/#dimer-ring-or-chain',
+    more: 'Dimers, rings and chains',
+  },
+  {
+    name: 'feature_compare',
+    title: 'Compare with experiment',
+    alt: 'A relaxed model drawn inside the cryo-EM density map EMD-13592',
+    text: 'A relaxed model can be compared with a deposited structure nucleotide by nucleotide, or placed in a cryo-EM density map, so that a design can be checked against what was observed.',
+    href: 'inspect/#compare',
+    more: 'Compare',
+  },
+];
+---
+<Doc title="RNAtwine manual">
+  <article class="home">
+    <section class:list={['hero', { 'hero-text-only': !hasHero }]}>
+      <div class="hero-text">
+        <p class="eyebrow">User manual</p>
+        <h1>RNAtwine</h1>
+        <p class="lede">
+          RNAtwine turns a drawn RNA nanostructure into a relaxed three-dimensional model.
+          It closes the kissing loops that hold the design together and spreads their strain through helices that bend and twist as double-stranded RNA does.
+          It is fast enough to relax large structures and even assemblies of many tiles.
+          Each result is ranked by its energy and can be saved as an all-atom model.
+        </p>
+        <p class="hero-links">
+          <a class="btn primary" href={`${base}getting-started/`}>Get started</a>
+          <a class="btn" href="#the-five-steps">The five steps</a>
+        </p>
+      </div>
+      <figure class="hero-art">
+        <Art name="hero" alt="The six-helix bundle 6HB-C relaxed by RNAtwine, colored along its strand" eager />
+        {hasHero && (
+          <figcaption>The six-helix bundle 6HB-C, a single strand of 720 nucleotides, relaxed by RNAtwine and colored along the strand from its 5′ end to its 3′ end.</figcaption>
+        )}
+      </figure>
+    </section>
+
+    <ul class="features">
+      {features.map((f) => (
+        <li>
+          <Art name={f.name} alt={f.alt} />
+          <h3>{f.title}</h3>
+          <p>{f.text}</p>
+          <a class="more" href={`${base}${f.href}`}>{f.more} →</a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="prose">
+      <p>
+        This manual describes the desktop app in the order of its five steps: opening a design, setting up what to relax, reading the result, editing lengths and exporting structures.
+        The same relaxes run from the command line, which the page <a href={`${base}command-line/`}>Command line</a> covers by task.
+      </p>
+      <h2 id="start-here">Start here</h2>
+      <ul class="cards">
+        {first.map((p) => (
+          <li><a href={`${base}${p.slug}/`}><b>{p.data.title}</b><span>{p.data.summary}</span></a></li>
+        ))}
+      </ul>
+      <h2 id="the-five-steps">The five steps of the app</h2>
+      <ol class="cards steps">
+        {steps.map((p) => (
+          <li><a href={`${base}${p.slug}/`}><span class="disc">{p.data.step}</span><b>{p.data.title}</b><span>{p.data.summary}</span></a></li>
+        ))}
+      </ol>
+      <h2 id="reference">Reference</h2>
+      <ul class="cards">
+        {rest.map((p) => (
+          <li><a href={`${base}${p.slug}/`}><b>{p.data.title}</b><span>{p.data.summary}</span></a></li>
+        ))}
+      </ul>
+    </div>
+  </article>
+</Doc>

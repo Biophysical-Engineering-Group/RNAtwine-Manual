@@ -1,0 +1,79 @@
+---
+title: Getting started
+order: 1
+summary: Install and open the app, learn the parts of its window, and relax a first design in five steps.
+figures:
+  - name: start-window
+    caption: The RNAtwine window with a design open, with (1) the rail, (2) the 3D view under its toolbar, (3) the side panel and (4) the status line, as the list below describes them.
+  - name: start-first-relax
+    caption: A tile after a relax, with This run open in Inspect and the label under the view reading RELAXED with the number of the run.
+  - name: start-settings
+    caption: The Settings window, where you set how many CPU cores a relax uses.
+---
+
+From a design, RNAtwine relaxes single structures and assemblies, builds the states the design can adopt, ranks them by energy and writes each as an all-atom model.
+Because a design drawn in pyFuRNAce has ideal helices and kissing loops that only approximately meet, the relax closes the loops and spreads their strain over the whole structure ([The twine model in brief](../concepts/#the-twine-model-in-brief)).
+The desktop app runs the relax in a 3D view where you can watch the structure move, and the command-line tool `rnatwine` runs the same pipeline from scripts with the same numbers ([Command line](../command-line/)).
+
+## Install and open the app
+
+Because neither the app nor the command-line tool is distributed as a prebuilt program yet, both are built from a checkout of the RNAtwine repository.
+Building needs Rust 1.98 or newer and a C linker: the Xcode Command Line Tools on macOS, `gcc` on Linux, or the Visual Studio Build Tools on Windows.
+On macOS, build a double-clickable app from the root of the repository:
+
+```sh
+./scripts/bundle_macos.sh          # writes bin/RNAtwine.app and bin/rnatwine
+```
+
+On any system you can also run the app directly from the checkout with `cargo run --release -p rnatwine-app`.
+Always build in release mode, because a debug build relaxes large designs many times more slowly.
+On Linux the app also needs the development packages for windows, file dialogs and Vulkan that the repository's README lists.
+The app needs a graphics adapter to draw its view.
+
+The app is not signed yet, and a bundle that you build yourself opens without the warning that macOS shows for an unsigned app downloaded from the internet.
+Because the repository's `AGENTS.md` gives a coding agent the build and test steps, you can also ask an agent working in a checkout to build the app for you.
+
+<Todo>Replace the build steps with the download and install steps once a signed app is published.</Todo>
+
+The app opens in the dark theme ([Themes](../view/#themes)), on the folder you opened last or, when there is none, on the design library that comes with RNAtwine.
+
+## The window
+
+<Figure name="start-window" />
+
+- **The rail** shows the logo and then the five steps of the app in the order you use them: **Open**, **Build**, **Inspect**, **Edit** and **Export**.
+  A step becomes available once it has something to show, and the current step is filled in honey pine.
+  At the foot of the rail are **Settings**, [About](../concepts/#the-about-window) and the switch to the other theme.
+- **The 3D view** draws the design, and its toolbar chooses what is drawn and how it is drawn ([View](../view/)).
+  The label under the view says what the picture shows, for example `AS DRAWN` or `RELAXED, run #n`.
+- **The side panel** holds the page of the current step, with its controls and its results.
+- **The status line** begins with the open design: its name, the number of nucleotides on screen and the number of loops that still need a role.
+
+When there is something new to see in the next step, the app moves there on its own: opening a design takes you to Build, and a finished relax takes you to Inspect.
+Because everything is reached from the rail and the side panel, the app has no menu bar of its own, and on macOS the system menu holds only About, Hide and Quit.
+
+## A first relax in five steps
+
+1. **Open a design.**
+   In **Open**, click **Library** and then the card of a design.
+   A design of your own opens with **Folder...** or **Open...** ([Open](../open/)).
+2. **Choose what to build.**
+   On Build's start screen, choose **The tile alone**, which relaxes one copy of the design on its own.
+3. **Give every kissing loop a role.**
+   Because the design's files do not say whether a loop drawn open is meant to close on the tile or to join another copy, the **Kissing loops** table lists these loops first, under **Needs a decision**.
+   Set each one to **close** if its two halves pair with each other on this tile, to **open** to leave it free, or to **join** if it connects to another copy ([Loop roles](../concepts/#loop-roles)).
+4. **Relax.**
+   Click **Relax tile** at the foot of the Build page and watch the structure move in the view.
+5. **Read the result.**
+   When the relax ends, the app moves to **Inspect**, which shows the energy, how the relax ended, the hard clashes and the kissing loops formed, the four numbers that a result is judged by together ([This run](../inspect/#this-run)).
+   Because the session holds its runs only in memory, save the run with <kbd>Cmd</kbd>+<kbd>S</kbd> (<kbd>Ctrl</kbd>+<kbd>S</kbd> on Linux and Windows) to keep it ([Runs and run files](../export/#runs-and-run-files)).
+
+<Figure name="start-first-relax" />
+
+## Settings
+
+**Settings**, at the foot of the rail, sets how many of the computer's CPU cores a relax uses, from one to all of them, and the default is half of the cores or the number that the environment variable `RNATWINE_THREADS` sets.
+More cores let an assembly relax more of its starts or conformers side by side, and they change only the time a relax takes, never its result.
+A change applies to a running relax from its next stage, and the app keeps your choice for later sessions until you click **Use the default**.
+
+<Figure name="start-settings" />

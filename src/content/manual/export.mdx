@@ -1,0 +1,114 @@
+---
+title: Export
+order: 6
+step: 5
+summary: Save the session's runs, write the run on screen as an oxDNA configuration, a pyFuRNAce .json or a full-atom PDB, write a run relaxed into a map in the map's frame, and export the view as an image or a twine model.
+figures:
+  - name: export-runs
+    caption: The list of the session's runs in Export.
+  - name: export-structures
+    caption: The structures that can be written from the run on screen.
+  - name: export-map-structures
+    caption: Export with a run relaxed into a map on screen. In Runs its Save... is grayed, and Structures writes its fitted .dat and PDB in the frame of the map's mirror image.
+  - name: export-image
+    caption: The Image and Twine model sections of Export.
+  - name: export-quit
+    caption: The dialog shown when the window is closed with unsaved runs.
+---
+
+**Export** is where the runs and structures of a session are written to files, and until then they are kept only in memory.
+The step carries a badge on the rail with the number of runs of the session not yet saved.
+
+## Runs and run files
+
+<Figure name="export-runs" />
+
+**Runs** lists every run of the session with its energy, how it ended, whether it is saved and which is on screen.
+The session keeps only its latest 10 runs, and a run that is not saved is lost when it drops out of that list, which then says that earlier runs were dropped.
+
+- **View** puts a run on screen, and the structures below are then written from it.
+- **Save...** writes the run to a run file, offering `<design>_run<n>.rtrun`.
+  <kbd>Cmd</kbd>+<kbd>S</kbd> (<kbd>Ctrl</kbd>+<kbd>S</kbd>) does the same for the run on screen from any step.
+- **Save all unsaved (n)...** asks for a folder and writes each unsaved run there as `<design>_run<n>.rtrun`.
+  A file is never replaced: a run whose file name is taken is written beside that file with the first free number, as `<design>_run<n>_2.rtrun`, and the status line names such runs.
+
+A [run relaxed into a map](../inspect/#relax-into-a-map) is not written to a run file, since a run file does not store the map stage, so its **Save...** is grayed and **Save all unsaved...** leaves it out: its fitted structures, below, are its record.
+
+Any run in the list is saved under the settings it was solved with, even when the settings in Build have changed since.
+[A run file](../concepts/#runs-and-run-files) opens again with [Open...](../open/#opening-a-saved-run), serves as a block in [From runs](../build/#assemblies-of-relaxed-runs) and as a reference in [Compare](../inspect/#compare), and is read by the command line's `report`, `score`, `compare` and `export-pdb`.
+
+## Structures of the run on screen
+
+<Figure name="export-structures" />
+
+The structures are always of the run on screen, named in the heading (**Structures of run #n**), and with the drawing on screen the panel asks you to view a run.
+An earlier run is written from its own model, restored from its record, and the panel gives both energies when the one at its coordinates differs from the one recorded.
+
+- **Write relaxed .dat** writes the relaxed structure as an oxDNA configuration, offering `<name>_run<n>.relaxed.dat`, with the matching topology (`.top`) beside it so that the pair opens in oxView.
+  For an assembly, the strands of every copy are repeated in the topology.
+  The parameters the structure was relaxed under are written to a `.provenance.txt` beside it.
+- **Write relaxed pyFuRNAce .json** writes the relaxed shape as a pyFuRNAce blueprint, to open in pyFuRNAce.
+  It needs pyFuRNAce and is offered for an imported design or for a pyFuRNAce design with its own `.json`, but not for an assembly, since a blueprint describes one design.
+- **Export full-atom PDB** writes the all-atom structure of the geometry chosen in the toolbar, relaxed or drawn as the button says, offering `<name>_run<n>.pdb` or `<name>_run<n>.initial.pdb`.
+  Because the PDB format cannot number more than 62 strands, 9,999 residues or 99,999 atoms, the dialog also saves mmCIF (`.cif`) and proposes it for a structure too large for PDB.
+  It builds the full-atom structure first unless the view has built it already.
+
+The full-atom PDB of a relaxed structure carries the thermal fluctuation of each nucleotide ([Colors](../inspect/#colors)) in its B-factor column, in Å, as the command line's `relax --pdb` does, and an mmCIF file carries it in `B_iso_or_equiv`.
+A remark in the file says that the value is the harmonic fluctuation at 310 K and not a measured B-factor, and 999.99 marks a nucleotide whose fluctuation the model does not determine.
+The column is filled in once the fluctuation is computed, after the file is written, and a PDB of the drawn geometry has none, since the fluctuation belongs to the relaxed structure.
+
+So that you can continue designing in pyFuRNAce, **Write pyFuRNAce .json** at the top of the page writes the blueprint of an imported design, with or without a relax.
+
+## Structures of a run relaxed into a map
+
+<Figure name="export-map-structures" />
+
+With a [run relaxed into a map](../inspect/#relax-into-a-map) on screen, **Structures** writes the structure fitted to the map, and the line above the buttons names the frame the files are written in.
+
+- **Write fitted .dat** writes the oxDNA configuration, offering `<name>_run<n>.fitted.dat`, with the matching `.top` beside it and the map's records in its `.provenance.txt`.
+- **Export fitted PDB** writes the full-atom structure, offering `<name>_run<n>.fitted.pdb`, or mmCIF for a `.cif` name, with the map's records in `REMARK 250` lines after its title.
+
+Because a fitted structure is useful on its map, both files are in the map's frame, with the placement applied, so the PDB and the map opened together overlap with no fitting.
+When the hand is the mirror image, no right-handed model can lie in the map as read, and a mirrored model would no longer be the model.
+The files are then in the frame of the map's mirror image: the map reversed along x about the middle of its grid, which is the map that ChimeraX's `volume flip #1 axis x` makes.
+
+The records give the program and its version, the map's file and folder, the resolution and its source, the hand and how it was chosen, the frame, the weight, the contour, the mean distance of the sites from the contour before and after the relax and as written, with the share inside it, the same for the PDB's C1′ atoms, and the elastic energy before and after.
+So that you can check the fit without RNAtwine, the contour is written to the value the fit used.
+
+To open the PDB on its map in ChimeraX, open both:
+
+```text
+open emd_13592.map
+open 5HTB_3X_run2.fitted.pdb
+```
+
+When the frame is the map's mirror image, flip the map first, which adds the flipped map as a new model, #2, in which the PDB lies:
+
+```text
+open emd_13592.map
+volume flip #1 axis x
+open 5HTB_3X_run2.fitted.pdb
+```
+
+A PDB whose coordinates in the map's frame do not fit PDB's columns is moved until they do, and the status line says so, so it no longer lies on the map: write mmCIF instead.
+
+## Image
+
+<Figure name="export-image" />
+
+**Export image (.png)...** writes the 3D view as it is drawn, with its colors, lighting and camera, at one, two or four times the size of the view, and the buttons give the pixel sizes.
+The image has the background on screen, or none with **transparent background**.
+If the graphics path fails, the image is drawn on the CPU instead, with the twine as plain tubes, and the status line says so.
+
+## Twine model
+
+**Write twine model (.glb)** writes the structure on screen as a twine mesh, in the colors on screen, for ChimeraX, Blender and other renderers.
+With **with fibers** on, each ply is a core with seven fibers wound on it, and without it the plies are smooth tubes and the file is about a quarter of the size.
+Base pairs are rods, and every tube is a closed surface.
+The coordinates are in Å, in the frame of the design's own coordinates, which is the frame of an exported PDB, so the mesh lies on the atoms.
+
+## Quitting with unsaved runs
+
+<Figure name="export-quit" />
+
+Closing the window while runs are unsaved is held back once: a dialog lists the runs not saved and offers **Go to Export**, **Quit without saving** or **Cancel**.
