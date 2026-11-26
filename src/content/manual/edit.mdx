@@ -5,7 +5,7 @@ step: 4
 summary: Lengthen or shorten stems, dovetails and linkers at a selected nucleotide, add a bulge, or slide a loop or motif along its helices, watch each edit relax, and save the edited design.
 figures:
   - name: edit-start
-    caption: The Edit step before editing, with Start editing and, for a pyFuRNAce design, the line saying whether the saved design gets its .json.
+    caption: The Edit step before editing, with Start editing and, for a pyFuRNAce design, the line that says whether the saved design will get its .json.
   - name: edit-stem
     caption: A paired nucleotide selected in Edit, with the length edits and the relax options in the panel.
   - name: edit-slide
@@ -16,80 +16,90 @@ figures:
     caption: Saving the edited design as a new folder beside the original.
 ---
 
-So that you see at once how a design responds, **Edit** changes lengths at the nucleotide selected in the view and relaxes each change from the shape on screen as you make it.
+So that you see at once how a design responds, **Edit** changes lengths at the nucleotide selected in the view and, after each change, relaxes the design from the shape on screen.
 The design's own files are never written: edits go to a working copy, and **Save** writes the edited design as a new design beside the original.
 
 ## Starting
 
 <Figure name="edit-start" />
 
-To begin, click **Start editing** followed by the design's name, and the edits are made in a hidden working folder beside the design, `.rnatwine-adjust/<name>/`, which the design browser skips.
-With copies, a tube or a sheet set up in Build, the view shows the assembly, and an edit is made to the tile so that every copy changes with it.
+To begin, click **Start editing**, the button that carries the design's name.
+The edits are then made in `.rnatwine-adjust/<name>/`, a hidden working folder beside the design that the design browser skips.
+When copies, a tube or a sheet are set up in Build, the view shows the assembly, and each edit is made to the tile, so that every copy changes with it.
 Length edits do not apply to an assembly of blocks from runs.
 
 ## Changing a length
 
 <Figure name="edit-stem" />
 
-Click a nucleotide in the view, and the panel names it and the helix or linker it belongs to.
+When you click a nucleotide in the view, the panel names it and the helix or linker it belongs to.
 
 - On a paired nucleotide of a stem or a dovetail, **-1 bp** and **+1 bp** remove or add a base pair.
 - On an unpaired nucleotide of a linker, **-1 nt** and **+1 nt** remove or add a nucleotide.
-- To make a new hinge, **+1 nt** on a paired nucleotide adds a bulge, an unpaired nucleotide after it on its strand, which is drawn flipped out while the relax stacks the two halves of the helix across it as a coaxial seam.
+- To make a new hinge, **+1 nt** on a paired nucleotide adds a bulge: an unpaired nucleotide after it on its strand.
+  The bulge is drawn flipped out of the helix, and the relax stacks the two halves of the helix across it as a coaxial seam.
   **+1 nt** on the bulge lengthens it, and **-1 nt** on its last nucleotide removes it.
-- **adds** chooses what is added: **copy**, a copy of the clicked pair or base, or a named pair (G·C, C·G, A·U, U·A) or base (A, U, G, C).
+- **adds** sets what an edit adds: **copy**, a copy of the clicked pair or base, or a named pair (G·C, C·G, A·U, U·A) or base (A, U, G, C).
 
-The keys <kbd>-</kbd> and <kbd>+</kbd> (or <kbd>=</kbd>) do the same as the buttons, and the selection follows each edit.
-The panel counts the edits in force, and **Undo** steps back one edit at a time, taking the shape on screen back with it.
+The keys <kbd>-</kbd> and <kbd>+</kbd> (or <kbd>=</kbd>) act as the buttons do, and the selection follows the nucleotide through each edit.
+The panel counts the edits in force.
+**Undo** steps back one edit at a time and restores the shape on screen with it.
 
-Kissing-loop halves, the bulges of alpha kissing loops, hairpin loops, locked motifs and every fixed motif that a pyFuRNAce `.json` declares, such as tetraloops and aptamers, keep their length, and on such a nucleotide the panel says "not editable" and why.
-Because moving the spacing between crossovers away from multiples of 11 bp is how a design is made to curve, every other length is accepted, and the relax shows whether the new length relaxes well.
+Some parts of a design keep their length: kissing-loop halves, the bulges of alpha kissing loops, hairpin loops, locked motifs, and every fixed motif that a pyFuRNAce `.json` declares, such as tetraloops and aptamers.
+On a nucleotide of such a part, the panel says "not editable" and why.
+Because a design is made to curve by moving the spacing between crossovers away from multiples of 11 bp, Edit accepts any length of the other parts and leaves it to the relax to show whether the design relaxes well with the new length.
 In tests, a bulge of one or three nucleotides bends its helix by 12 to 26 degrees, and the two halves stay stacked.
 
 ## Sliding a loop or motif
 
 <Figure name="edit-slide" />
 
-A loop or motif between two helices slides along them: one base pair moves across it from one helix to the other, so that the motif keeps its closing pairs and the two helices keep their combined length.
-With any of its nucleotides selected, the panel names the two helices and offers **Slide +1 bp** and **Slide -1 bp**, and hovering over a button shows what each helix gains or loses.
+A loop or motif between two helices slides along them: one base pair moves across the motif from one helix to the other, so that the motif keeps its closing pairs and the two helices keep their combined length.
+When any nucleotide of the motif is selected, the panel names the two helices and offers **Slide +1 bp** and **Slide -1 bp**.
+Hovering over a button shows what each helix gains or loses.
 
 - **A kissing loop** slides between its own hairpin stem and its partner's.
-  **Slide +1 bp** lengthens the stem of this loop by a pair and shortens its partner's by one, and **Slide -1 bp** does the reverse.
-  In Edit, a click on a loop's handle selects the first nucleotide of the half it marks, so that the panel offers the slide of that loop.
-- **A motif inside a helix**, such as an internal loop or bulge, an alpha kissing-loop bulge, a locked motif or any fixed group, slides between its outer and inner helix.
-  **Slide +1 bp** lengthens the outer helix by a pair and shortens the inner one.
+  **Slide +1 bp** lengthens the stem of this loop by one pair and shortens the stem of the partner loop by one pair, and **Slide -1 bp** does the reverse.
+  So that a loop can be slid from its handle, a click on the handle in Edit selects the first nucleotide of the loop half that the handle marks, and the panel offers the slide of that loop.
+- **A motif inside a helix**, such as an internal loop or bulge, an alpha kissing-loop bulge, a locked motif or any fixed group, slides between the helix outside it and the helix inside it.
+  **Slide +1 bp** lengthens the outer helix by one pair and shortens the inner helix by one pair.
 
-Each base stays on its own strand line of the continuous helix, so the sequence read along either strand keeps its order, and sliding back gives the design's files back exactly.
-The helix that shrinks keeps at least two pairs, so the button that would go past that is grayed, with the reason under it.
+Each base stays on its own strand line of the continuous helix, so the sequence read along either strand keeps its order.
+Sliding back restores the design's files exactly.
+The helix that shrinks keeps at least two pairs: the button that would take it below two pairs is grayed, with the reason under it.
 Where a slide is not possible, the panel says why ("no slide: ..."): at a hairpin loop that kisses no other, at a junction of three or more helices, at the exterior loop, at a motif with a strand end in it, or at a hairpin loop whose partner is not a hairpin loop.
 
 ## Relaxing as you edit
 
-Three options under the buttons decide what happens after each edit:
+Three options under the buttons set what happens after each edit:
 
 - **relax after each edit**, on by default, starts a relax from the shape on screen at once, replacing any relax still running.
-  The result keeps the step, the selection and the view, and until it ends the label under the view reads `EDITED (n edits), not yet relaxed`.
-- **quick relax (fast, approximate)**, on by default, skips the start-up stages and goes straight to the final relax, since the shape on screen is already relaxed, and its result is labeled `QUICK RELAX, run #n`.
+  The result of the relax keeps the step, the selection and the view.
+  Until the relax ends, the label under the view reads `EDITED (n edits), not yet relaxed`.
+- **quick relax (fast, approximate)**, on by default: because the shape on screen is already relaxed, the relax after an edit skips the start-up stages and goes straight to the final relax.
+  Its result is labeled `QUICK RELAX, run #n`.
 - **keep the selected pair centered**, on by default, makes the view follow the selected pair through relaxes and edits, turning and zooming about it.
-  A pan, by right-drag or shift-drag, releases it until the next click or edit.
+  A pan, by right-drag or shift-drag, stops the view following the pair until the next click or edit.
 
-So that the picture holds still across an edit, every nucleotide the edit keeps starts from where it is on screen, and each new one is placed among its nearest neighbors.
+So that the picture holds still across an edit, every nucleotide the edit keeps starts from where it is on screen, and each new nucleotide is placed among its nearest neighbors.
 
 <Note title="A quick relax is a preview, not the result">
-A quick relax starts from the shape on screen, so it can settle in a different place from a full relax that starts from the drawing, most often after several pairs are added in one place, and it can keep clashes that the full relax resolves.
-An energy close to that of the full relax can still belong to a different structure, and the result can depend on the order of the edits.
+A quick relax starts from the shape on screen, so it can settle in a different minimum from a full relax that starts from the drawing, most often after several pairs are added in one place.
+It can also keep clashes that the full relax resolves.
+An energy close to that of the full relax can still belong to a different structure, and the result of a quick relax can depend on the order of the edits.
 When the edits are done, relax the edited design from its drawing with **Relax** in [Build](../build/#relax), and use that result.
 </Note>
 
-With an assembly, the relax after an edit relaxes the whole assembly from the shape carried across the edit, keeping the junction state that its last relax chose.
-It searches the states again, as Relax does, when an edit breaks the kept state or before any state has been chosen.
-Like Relax, it first solves one copy alone to place the copies, which is most of the cost of an edit on a large tile.
+With an assembly, the relax after an edit relaxes the whole assembly from the shape carried across the edit and keeps the junction state that the last relax of the assembly chose.
+When an edit breaks the kept state, or before any state has been chosen, it searches the states again, as Relax does.
+Like Relax, it first solves one copy alone to place the copies, and on a large tile this one-copy solve is most of the cost of an edit.
 
 ## Loop roles during edits
 
 <Figure name="edit-roles" />
 
-Because an edit can move the halves of a loop apart in the drawing, so that a loop drawn closed would lose its default role, the role of every loop when editing begins is kept with the working copy, in `<name>.loops.toml`.
+An edit can move the halves of a loop apart in the drawing, and a loop drawn closed would then lose its default role.
+So that every loop keeps its role, the role each loop has when editing begins is kept with the working copy, in `<name>.loops.toml`.
 A loop that had no role to begin with holds back the relax: the panel reads "Not relaxed: loops with no role.", lists each such loop with its size and the distance between its halves, and offers **close**, **open** and **join** for each.
 The role you give a loop here is saved with the design.
 
@@ -97,11 +107,14 @@ The role you give a loop here is saved with the design.
 
 <Figure name="edit-save" />
 
-Under **Save as**, give the edited design a name, and **Save** writes it as a new folder beside the design's (`<name>_adj1`, ...), shown beside the name, with `<name>.edits.json`, the list of edits that made it.
+Under **Save as**, give the edited design a name, and **Save** writes it as a new folder beside the design's folder (`<name>_adj1`, ...).
+The new folder is shown beside the name, and it holds `<name>.edits.json`, the list of edits that made the design.
 A name whose folder already exists is refused, and a new name saves another copy.
 
-So that the saved design opens in pyFuRNAce with the same sequence, strands and structure, the save of a pyFuRNAce design also writes its pyFuRNAce `.json` when pyFuRNAce is found, and the panel says beforehand whether it will.
-When pyFuRNAce is not found on its own, give the path of the Python that has it under **Where pyFuRNAce is**, and the app keeps that path for later editing sessions.
-A bulge inside a dovetail has no pyFuRNAce form, and the save then writes the other files and says why there is no `.json`.
+So that the saved design opens in pyFuRNAce with the same sequence, strands and structure, the save of a pyFuRNAce design also writes its pyFuRNAce `.json` when pyFuRNAce is found.
+The panel says beforehand whether the save will write the `.json`.
+When the app does not find pyFuRNAce on its own, give the path of the Python that has it under **Where pyFuRNAce is**, and the app keeps that path for later editing sessions.
+A bulge inside a dovetail has no pyFuRNAce form, so for such a design the save writes the other files and says why there is no `.json`.
 
-**Stop editing** reopens the design as it was and drops the edits not saved, and opening another design also ends the editing session.
+**Stop editing** reopens the design as it was and drops any edits that were not saved.
+Opening another design also ends the editing session.

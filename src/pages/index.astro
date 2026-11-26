@@ -18,7 +18,7 @@ const features = [
     name: 'feature_relax',
     title: 'Relax a design',
     alt: 'The five-helix tile 5HT-B relaxed and colored by how far each nucleotide moved from the drawing',
-    text: 'RNAtwine relaxes a drawn design into a shape the molecule can take in about half a minute for a single structure, and it colors each nucleotide by how far the relax moved it from the drawing.',
+    text: 'Open a pyFuRNAce design and relax it, in seconds to a minute for a single tile; each nucleotide can be colored by how far the relax moved it from the drawing.',
     href: 'getting-started/#a-first-relax-in-five-steps',
     more: 'A first relax',
   },
@@ -26,7 +26,7 @@ const features = [
     name: 'feature_assemble',
     title: 'Build assemblies',
     alt: 'Four copies of a ring tile joined into a ring, drawn as twine',
-    text: 'Copies of a tile join through their connector loops into dimers, rings, chains, tubes and sheets, and relaxed runs can be placed as the blocks of a larger assembly.',
+    text: 'Copies of a tile join through their connector loops into dimers, rings, chains, tubes and sheets, and relaxed runs can serve as the blocks of a larger assembly.',
     href: 'build/#dimer-ring-or-chain',
     more: 'Dimers, rings and chains',
   },
@@ -34,7 +34,7 @@ const features = [
     name: 'feature_compare',
     title: 'Compare with experiment',
     alt: 'A relaxed model drawn inside the cryo-EM density map EMD-13592',
-    text: 'A relaxed model can be compared with a deposited structure nucleotide by nucleotide, or placed in a cryo-EM density map, so that a design can be checked against what was observed.',
+    text: 'Compare a relaxed model with a deposited structure, nucleotide by nucleotide, or with a cryo-EM map, and relax it into the map as a starting model for the density.',
     href: 'inspect/#compare',
     more: 'Compare',
   },
@@ -47,10 +47,11 @@ const features = [
         <p class="eyebrow">User manual</p>
         <h1>RNAtwine</h1>
         <p class="lede">
-          RNAtwine turns a drawn RNA nanostructure into a relaxed three-dimensional model.
-          It closes the kissing loops that hold the design together and spreads their strain through helices that bend and twist as double-stranded RNA does.
-          It is fast enough to relax large structures and even assemblies of many tiles.
-          Each result is ranked by its energy and can be saved as an all-atom model.
+          RNAtwine relaxes three-dimensional models of RNA.
+          Each nucleotide is one site of an elastic network, in which the helices bend and twist as double-stranded RNA does.
+          The relax closes the kissing loops that hold the design together, and carries their strain through the helices to a minimum of the model's energy.
+          A single tile relaxes in seconds to a minute, and dimers, rings, chains, tubes and sheets of many tiles in minutes to hours.
+          The result can be compared with a deposited structure or a cryo-EM map, relaxed into the map, and saved as an all-atom model.
         </p>
         <p class="hero-links">
           <a class="btn primary" href={`${base}getting-started/`}>Get started</a>
@@ -78,8 +79,8 @@ const features = [
 
     <div class="prose">
       <p>
-        This manual describes the desktop app in the order of its five steps: opening a design, setting up what to relax, reading the result, editing lengths and exporting structures.
-        The same relaxes run from the command line, which the page <a href={`${base}command-line/`}>Command line</a> covers by task.
+        This manual follows the desktop app through its five steps: opening a design, setting up what to relax, reading the result, editing lengths and exporting structures.
+        The command-line tool <code>rnatwine</code> runs the same relaxes and gives the same numbers; the page <a href={`${base}command-line/`}>Command line</a> covers it by task.
       </p>
       <h2 id="start-here">Start here</h2>
       <ul class="cards">

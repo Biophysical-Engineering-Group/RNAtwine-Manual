@@ -26,15 +26,15 @@ In **Build** you choose what to relax, decide what each kissing loop does, and r
 
 <Figure name="build-setups" />
 
-The start screen lists the design's saved setups at the top, each loading with one click, and below them one card for each kind of build:
+The start screen lists the design's saved setups at the top, each loaded with one click, and below them one card for each kind of build:
 
 - **The tile alone** relaxes one copy of the design on its own.
 - **Dimer, ring or chain** relaxes two or more copies of the design joined through the connector loops you pick.
 - **Tube or sheet** relaxes a checkerboard lattice of the tile, rolled into a closed tube or laid flat as an open sheet.
 - **From runs** uses relaxed runs as the blocks of one larger assembly.
 
-The panel of the setup you choose is headed by its name, and **‹ Setups** returns to the start screen.
-To grow a dendrimer, use the command line's `rnatwine grow` ([Command line](../command-line/#grow-a-dendrimer)), since the app does not offer it.
+The panel of the setup you choose is headed by the setup's name, and **‹ Setups** returns to the start screen.
+Because the app does not grow dendrimers, use the command line's `rnatwine grow` for them ([Command line](../command-line/#grow-a-dendrimer)).
 
 ## Saved setups
 
@@ -42,37 +42,41 @@ So that a setup can be run again, in the app or from the command line, it is sav
 The file holds the assembly, the loop roles and the settings that differ from the standard ones.
 The row above each setup panel loads a saved setup or saves the current one: type a name and click **Save setup**.
 A configuration written by hand into that folder appears in the app's list as well.
-A setup that changes some of the model's standard parameters carries a badge that counts them, and [About](../concepts/#the-about-window) lists them.
+A setup that changes some of the model's standard parameters carries a badge that counts them, and [About](../concepts/#the-about-window) lists the changed parameters.
 
 ## Kissing loops and their roles
 
-Every kissing loop has a role, **close**, **open** or **join**, which decides whether the relax draws its two halves together ([Loop roles](../concepts/#loop-roles)).
+Every kissing loop has a role, **close**, **open** or **join**, and the role decides whether the relax draws the loop's two halves together ([Loop roles](../concepts/#loop-roles)).
 Because pyFuRNAce declares a clasp inside the tile and a connector to another copy in the same way, a loop that the drawing leaves open has no role until you give it one, unless the assembly joins it.
-Decide each role from what the design is meant to do, since the relax starts only when every loop has one: a connector to another copy is **join**, and a loop meant to close inside the tile is **close**.
+Because the relax starts only when every loop has a role, decide each role from what the design is meant to do: a connector to another copy is **join**, and a loop meant to close inside the tile is **close**.
 
 <Figure name="build-loops" />
 
 The **Kissing loops** table, on the panels of the tile alone and of copies, lists every declared loop under a line that counts the roles and the loops still without a role.
 
-- **Needs a decision** comes first, with a row for each loop that the drawing leaves open, and **Set all** sets every loop of the group at once.
+- **Needs a decision** comes first, with a row for each loop that the drawing leaves open.
+  **Set all** sets every loop of the group at once.
   A dot marks a role changed in this session, and a drawn gap in the caution color marks a loop drawn open.
 - The loops drawn closed are folded below, under "n more, closed in the drawing".
 - **find** filters the loops by key, and **keys in view** draws each loop's key beside its halves in the view.
-- Clicking a key finds the loop in the view, a second click centers the view on it, and clicking a loop in the view finds its row.
+- Clicking a key finds the loop in the view, a second click centers the view on the loop, and clicking a loop in the view finds its row.
 
-So that later runs and the command line use the same roles, **Save roles with design** writes them beside the design as `<name>.loops.toml`, and **Revert** drops the changes of this session.
+So that later runs and the command line use the same roles, **Save roles with design** writes them beside the design as `<name>.loops.toml`.
+**Revert** drops the role changes of this session.
 
 ### Clasp isomers
 
-Because a clasp can close in either of two isomers and a relax keeps the one it starts in ([Kissing loops and clasps](../concepts/#kissing-loops-and-clasps)), the **isomer** toggle closes a loop in its other isomer, and the table lists such loops under "Closed in the other isomer: ...".
+Because a clasp can close in either of two isomers and a relax keeps the one it starts in ([Kissing loops and clasps](../concepts/#kissing-loops-and-clasps)), the **isomer** toggle closes a loop in its other isomer.
+The table lists the loops so toggled under "Closed in the other isomer: ...".
 To compare the two isomers of a clasp, relax each one and compare the fits and clashes of the two runs, not their energies alone.
 
 ### Loop handles
 
 <Figure name="build-handles" />
 
-So that a loop's role can be seen on the structure itself, each of its halves carries a handle over the view, a numbered disc in the colors of its role.
-Pointing at a handle names the role and draws a dashed arc to the loop's other half, and a click pins the loop and finds its row in the table until a second click releases it.
+So that a loop's role can be seen on the structure itself, each half of the loop carries a handle over the view, a numbered disc in the colors of the loop's role.
+Pointing at a handle names the role and draws a dashed arc to the loop's other half.
+A click on a handle pins the loop and finds its row in the table, and a second click releases the loop.
 So that a large design is not hidden under its loops, handles that crowd each other on screen are drawn as dots until you zoom in.
 With more than 40 loops in view, only the loops that need attention keep a handle, such as a loop with no role, a loop that should close but did not, and the pinned loop.
 
@@ -80,24 +84,25 @@ With more than 40 loops in view, only the loops that need attention keep a handl
 
 <Figure name="build-copies" />
 
-The **Copies and topology** panel joins copies of the tile through its loops with the role **join**.
+The **Copies and topology** panel joins copies of the tile through the tile's loops with the role **join**.
 
 - **copies** sets the number of copies, from 1 (the tile alone, with its join loops free) to 24.
 - The topology sets how the copies connect: in a **Ring** the last copy joins back to the first, and in a **Chain** the two end connectors are left free.
   In a **Strip**, for a tile whose two connectors point different ways, each copy joins the next through the joined sites in turn.
   Two copies joined as a ring make a dimer joined both ways.
 - **Each joined site pairs with, on the next copy:** sets the partner of each joined site, usually the site itself.
-- **Half-declared sites** are connectors that pyFuRNAce exported as two unpaired halves, and a ticked site joins between copies.
+- **Half-declared sites** are connectors that pyFuRNAce exported as two unpaired halves, and a site that you tick joins between copies.
   Because ticking both halves would join each pair of neighbors twice, a ring through two such halves needs one half ticked and the other picked as its partner.
 
 **Load config (.toml)...** reads a run configuration with an assembly, and **Save config (.toml)...** writes the setup for the command line.
-A join list loaded from a file that is neither a ring nor a chain is kept as it was loaded until you move a control, which replaces it with the list the controls describe.
+A join list loaded from a file that is neither a ring nor a chain is kept as loaded until you move a control.
+Moving a control replaces the loaded list with the list that the controls describe.
 A setup that contradicts itself is refused before anything is solved, and the panel gives the reasons under "This setup cannot be built:".
 
 ### What an assembly relax does
 
-An assembly relax searches the arrangements that the copies can take and keeps the lowest in energy, so it takes several relaxes and minutes instead of seconds.
-While a dimer's junctions are searched over their stacking states ([Assemblies and junction states](../concepts/#assemblies-and-junction-states)), the status line names the states being solved, called conformers, and the lowest so far.
+An assembly relax searches the arrangements that the copies can take and keeps the one lowest in energy, so it runs several relaxes and takes minutes instead of seconds.
+While a dimer's junctions are searched over their stacking states ([Assemblies and junction states](../concepts/#assemblies-and-junction-states)), the status line names the states being solved, called conformers, and the lowest-energy conformer so far.
 Results of nearly equal energy are states that the design can adopt ([The twine model in brief](../concepts/#the-twine-model-in-brief)).
 
 ## Tube or sheet
@@ -111,25 +116,30 @@ The **Tube or sheet** panel builds a checkerboard lattice of the tile from these
 - **rows around** for a tube or **rows across** for a sheet, from 2 to 64.
   Because an odd number of rows cannot close the checkerboard, a closed tube needs an even number.
 - **tiles along each row**
-- For a tube, **seam offset** closes the tube straight at 0 and as a spiral at any other value, and **face outward** chooses the face turned out, **back** by default or **front**.
-  **start inflation** sets the radius of the start cylinder over the lattice's own, so that the tiles start clear of each other.
-- **start template**: **staged** starts every tile from one relaxed tile and is the default, while **drawn** starts from the tile as drawn, with its loops open, from which large tubes relax poorly.
+- For a tube, **seam offset** closes the tube straight at 0 and as a spiral at any other value.
+  **face outward** chooses the face turned out, **back** by default or **front**.
+  **start inflation** sets the radius of the start cylinder as a ratio to the lattice's own radius, so that the tiles start clear of each other.
+- **start template**: **staged**, the default, starts every tile from one relaxed tile, and **drawn** starts from the tile as drawn, with its loops open.
+  Large tubes relax poorly from the drawn start.
 
-Because a large tube takes a long time to relax, check its start first: **Export start structure...** writes it as mmCIF without relaxing it.
+Because a large tube takes a long time to relax, check its start first: **Export start structure...** writes the start as mmCIF without relaxing it.
 
 ## Assemblies of relaxed runs
 
 <Figure name="build-blocks" />
 
 **From runs** builds a larger assembly from relaxed runs in rounds, for example by relaxing rings first and then joining them into an array.
-Each run is a block, placed by a rigid fit at its joins, and the whole is then relaxed as one ordinary assembly with the rest geometry of the drawing, so that the runs give only its start.
+Each run is a block, placed by a rigid fit at its joins.
+The whole is then relaxed as one ordinary assembly with the rest geometry of the drawing, so the runs set only where the relax starts.
 
 - **Blocks** lists each run with its block numbers, its copies, its four numbers and how many blocks it stands for.
-  Add a run of this session, or a saved run with **Add run file...** (`.rtrun`), and set a block's count to make several blocks of one run, numbered in order.
-- **Joins between blocks** has one row per interface, whose `a` end (block, copy and site) holds the forward half of the joining loop and whose `b` end holds the reverse half, each offering the open sites of its block.
+  Add a run of this session, or a saved run with **Add run file...** (`.rtrun`).
+  To make several blocks of one run, numbered in order, set the block's count.
+- **Joins between blocks** has one row per interface.
+  The `a` end of a row (block, copy and site) holds the forward half of the joining loop and the `b` end holds the reverse half, and each end offers the open sites of its block.
   Because a site that pairs with itself joins in both directions, **both ways** adds the mirror join when the two ends name the same site.
 - **Place** fits each block rigidly at its joins and shows where the relax would start, labeled `BLOCKS PLACED (n blocks, m copies), not yet relaxed`.
-  It gives the worst block fit, the worst join and the overlapping pairs, and below them the fit of each block and the residual of each join.
+  The panel then gives the worst block fit, the worst join and the overlapping pairs, and below them the fit of each block and the residual of each join.
   A placement goes stale when the design, the settings, the roles, the blocks or the joins change.
 - **Relax n blocks, m copies** relaxes the placed assembly, and places it first when there is no current placement.
 
@@ -140,20 +150,22 @@ So that the configuration can name its file, a run of this session that is not y
 
 The design's files and its kissing-loop template are folded at the foot of the page, under **Design files and kissing-loop template**.
 Under the standard settings every kissing loop closes onto the built-in template, so no design needs a reference design.
-Only when a setup or configuration file sets `kl_template_source` to one of the coarse template families does a design without a formed kissing loop of its own take its template from a reference design, which **Choose a different reference...** picks and **Clear the reference** drops.
+Only when a setup or configuration file sets `kl_template_source` to one of the coarse template families does a design without a formed kissing loop of its own take its template from a reference design.
+**Choose a different reference...** picks that reference design, and **Clear the reference** drops it.
 
 ## Relax
 
 **Relax** is pinned under the Build page and says what it will run, for example "Relax tile", "Relax 6 copies" or "Relax 4 blocks, 16 copies".
-Because designs of one size differ widely in how long they take, the wait shown under the button, before this computer has relaxed a design of that kind, is the range that most relaxes of that size take, such as "usually 30 s to 7 min".
-Once this computer has relaxed the same setup, the wait is that of its earlier relaxes.
+Because designs of one size differ widely in how long they take, the wait shown under the button, until this computer has relaxed the same setup, is the range that most relaxes of that size take, such as "usually 30 s to 7 min".
+Once this computer has relaxed the same setup, the wait shown is that of the setup's earlier relaxes.
 
 <Figure name="build-relax-progress" />
 
-While a relax runs, the strip under the button shows the progress bar for the whole run, what is relaxing and its stage, the time so far against the time expected, **Cancel relax**, and the folded **Details** with the junction search and the solver's iteration, energy and gradient.
-Past the usual range, the time says so, for example "5:00 so far, longer than the usual 15 s to 4 min".
+While a relax runs, the strip under the button shows the progress bar for the whole run, what is relaxing and at which stage, the time so far against the time expected, **Cancel relax**, and, folded under **Details**, the junction search and the solver's iteration, energy and gradient.
+When a relax outlasts the usual range, the time says so, for example "5:00 so far, longer than the usual 15 s to 4 min".
 The bar follows the stages that the relax reports and not a clock, so it can jump forward but never runs back.
-Meanwhile the view draws the relax up to four times a second, superposed on the drawing so that the view holds still, and for an assembly it first switches to the assembled start.
+Meanwhile the view draws the relax up to four times a second, superposed on the drawing so that the view holds still.
+For an assembly, the view first switches to the assembled start.
 Because the structure drawn during a relax is a snapshot and not a result, the label under the view names the stage in the caution color, for example "rigid-body drive, stage 2 of 3".
 **Cancel relax** stops the relax at its next step and keeps no result, and the last snapshot stays on screen, labeled as a stopped relax.
 

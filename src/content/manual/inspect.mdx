@@ -13,20 +13,21 @@ figures:
   - name: inspect-flexibility
     caption: A relaxed structure colored by flexibility.
   - name: inspect-runs
-    caption: The Runs page with the session's runs, and the comparison of two of them that compare to opens.
+    caption: The Runs page with the session's runs, and the comparison of two of them that compare to opened.
   - name: inspect-compare-structure
     caption: A relaxed tile compared with its deposited structure, drawn over the model and colored by distance.
   - name: inspect-compare-map
     caption: A relaxed model fitted into a cryo-EM density map.
   - name: inspect-relax-into-map
-    caption: Relax into map under the comparison with a density map, filled in, with the resolution typed, since the map states none, and the hand set to the mirror image.
+    caption: The Relax into map form under a comparison with a density map, filled in. The resolution is typed because the map states none, and the hand is set to the mirror image.
   - name: inspect-map-run
-    caption: The run relaxed into the map, colored by its distance to the density, with the later lines of its relax into map block and the form grayed, since this run is itself relaxed into the map.
+    caption: The run relaxed into the map, colored by its distance to the density, with the later lines of its relax into map block. The form is grayed because this run is itself relaxed into the map.
   - name: inspect-thermal-motion
     caption: Thermal motion of a relaxed structure, swinging along its softest collective motions.
 ---
 
-**Inspect** shows the result of a relax on three pages, **This run**, **Runs** and **Compare**, and the toolbar over the view adds the colors, the switch between drawn and relaxed, and thermal motion.
+**Inspect** shows the result of a relax on three pages: **This run**, **Runs** and **Compare**.
+The toolbar over the view adds the colors, the switch between the drawn and the relaxed structure, and thermal motion.
 
 ## This run
 
@@ -40,20 +41,21 @@ figures:
 | termination | how the relax ended: `converged` (or `converged_newton`, for a long solve) is shown as good, and any other label is a caveat on the energy |
 | RMSD (nm) | how far the relaxed structure lies from the drawing, after superposition |
 | KL formed | the number of kissing loops formed, out of those set to close |
-| KL without a partner | loops declared without a partner, which are unrestrained by design (shown only when there are any) |
+| KL without a partner | loops declared without a partner and so left unrestrained by design (shown only when there are any) |
 | stacks disturbed | helix stacks whose rise moved beyond tolerance, out of all stacks |
-| winding defects | stems whose net twist moved by more than half a turn (a ladder or a flip of handedness), where any one is an alert |
-| hard clashes (&lt;0.26 nm) | nucleotides closer than 0.26 nm, where any one is an alert |
+| winding defects | stems whose net twist moved by more than half a turn (a ladder or a flip of handedness), and any one is an alert |
+| hard clashes (&lt;0.26 nm) | nucleotides closer than 0.26 nm, and any one is an alert |
 | close contacts (0.26-0.60) | nucleotides between 0.26 and 0.60 nm apart |
 
 Because a structure with a low energy can still have clashes or a loop that did not form, a result is judged by the energy, the termination, the hard clashes and the kissing loops together, and never by the energy alone.
 The energy of a run that did not converge is not that of a minimum, so the panel says in red when the relax ended before it converged.
-When the energy stopped falling while the gradient was still above its stop, the panel asks you to check the clashes and the kissing loops.
-Besides `converged` and `converged_newton`, the termination can be `iteration_cap`, when the relax reached its iteration limit, `settled`, when the shape stopped changing before the gradient reached its stop, `stalled` or `abnormal`.
+When the energy stopped falling while the gradient was still above its stopping value, the panel asks you to check the clashes and the kissing loops.
+Besides `converged` and `converged_newton`, the termination can be `iteration_cap` (the relax reached its iteration limit), `settled` (the shape stopped changing before the gradient reached its stopping value), `stalled` or `abnormal`.
 
 ### Kissing loops
 
-A kissing loop counts as formed when its two halves are within 5 degrees of twist register, and because this tests twist and not distance, every loop is listed with both its gap and its twist error.
+A kissing loop counts as formed when its two halves are within 5 degrees of twist register.
+Because this test reads the twist and not the distance, every loop is listed with both its gap and its twist error.
 The panel first gives "n/m formed" and then the loops by outcome, each group with its mean gap and twist error:
 
 | outcome | meaning |
@@ -69,35 +71,40 @@ Branched kissing loops found in the structure but not declared are listed separa
 ### Assembly and lattice
 
 For an assembly, **Assembly** says what was built: the copies, the joins between them, and the loops left as the design declares them.
-To show what the joins cost, it gives the strain per copy, the energy per copy above that of one copy relaxed alone in the same run.
+To show what the joins cost, it gives the strain per copy: the energy per copy above that of one copy relaxed alone in the same run.
 For a dimer it lists the junction states that were solved and marks the one kept.
-For a tube or sheet, **Lattice** scores the interior tiles, including half the circumference, which is what an AFM image of a collapsed tube measures.
+For a tube or sheet, **Lattice** scores the interior tiles, and its scores include half the circumference, the width that an AFM image of a collapsed tube measures.
 
 ## Drawn or relaxed
 
 <Figure name="inspect-drawn-relaxed" />
 
-To show what the relax changed, **Drawn** and **Relaxed** at the left of the toolbar switch the view, in the same frame, between the design as drawn and the relaxed structure, rebuilding and clearing nothing.
-Because clashes describe the relaxed structure, they are hidden on the drawn one, while the full-atom view and the full-atom PDB that [Export](../export/#structures-of-the-run-on-screen) writes follow the switch.
+To show what the relax changed, **Drawn** and **Relaxed** at the left of the toolbar switch the view, in the same frame, between the design as drawn and the relaxed structure, and the switch neither rebuilds nor clears anything.
+Because clashes describe the relaxed structure, they are hidden on the drawn one.
+The full-atom view and the full-atom PDB that [Export](../export/#structures-of-the-run-on-screen) writes follow the switch.
 
 ## Selecting a nucleotide
 
-Pointing at a nucleotide rings it, and a click selects it: the selection is drawn in gold and its partner, the base-pair partner or else the kissing-loop partner, in sky blue, with a gold rod between them.
-Their neighbors along the strand stay in full color while the rest of the structure fades, as **dim the rest** in [View options](../view/#view-options) sets.
+Pointing at a nucleotide rings it, and a click selects it.
+The selected nucleotide is drawn in gold and its partner in sky blue, with a gold rod between them, and the partner is the base-pair partner or, where there is none, the kissing-loop partner.
+The neighbors of these two along the strand stay in full color while the rest of the structure fades, by as much as **dim the rest** in [View options](../view/#view-options) sets.
 
 <Figure name="inspect-card" />
 
 The card at the top right of the view describes the selection: its base, strand and copy, its pair and pair class, three nucleotides of context on either side, how far the relax moved it, its thermal fluctuation and up to two close contacts.
-Buttons in the card's head step to the 5′ or 3′ neighbor or the **Partner** and **Center** the view on the nucleotide, as do the keys <kbd>←</kbd>, <kbd>→</kbd> and <kbd>P</kbd>, and <kbd>Esc</kbd> deselects.
-Once full atoms are built for the geometry on screen, which **Build** on the card does, **Structure** gives the sugar pucker, χ, the backbone torsions, stacking on each neighbor and the C1′–C1′ distance to the partner, and flags a backbone gap where O3′–P exceeds 1.8 Å.
+Buttons in the card's head step to the 5′ or 3′ neighbor or to the **Partner**, and **Center** centers the view on the nucleotide.
+The keys <kbd>←</kbd>, <kbd>→</kbd> and <kbd>P</kbd> step in the same way, and <kbd>Esc</kbd> deselects.
+**Build** on the card builds full atoms for the geometry on screen, and **Structure** then gives the sugar pucker, χ, the backbone torsions, the stacking on each neighbor and the C1′–C1′ distance to the partner.
+**Structure** also flags a backbone gap where O3′–P exceeds 1.8 Å.
 
 ## Colors
 
-The **Color** menu in the toolbar colors the nucleotides by one of these modes, and the caption at the top of View options explains the mode in use.
+The **Color** menu in the toolbar colors the nucleotides by one of these modes.
+The caption at the top of View options explains the mode in use.
 
 | mode | what it shows |
 |---|---|
-| plain | one color, chosen in a submenu, and in an assembly joined copies alternate colors unless **alternate copies** is off |
+| plain | one color, chosen in a submenu, and in an assembly, joined copies alternate colors unless **alternate copies** is off |
 | displacement | how far each nucleotide moved from the drawing, after superposition, as a rank within the structure, so that designs whose shifts differ by orders of magnitude are colored on the same scale |
 | flexibility | each nucleotide's thermal fluctuation (below) |
 | 5′ to 3′ | each strand from its 5′ end (blue) to its 3′ end (gold), lightening along the way, and starting again on each copy of an assembly |
@@ -108,18 +115,19 @@ The **Color** menu in the toolbar colors the nucleotides by one of these modes, 
 **Flexibility** is the harmonic root-mean-square fluctuation of each nucleotide at 310 K in the relaxed structure, the thermal spread that the command line's `relax` also reports.
 The scale is logarithmic and spans the structure's own range, teal at the 2nd percentile and red at the 98th, and the caption gives both ends in nm.
 Nucleotides whose fluctuation the model does not determine, above all the free single-stranded ends, are drawn red as the loosest of all.
-The fluctuation is computed the first time this color, thermal motion or a PDB export needs it, and because it belongs to the latest relax, the drawn structure, an earlier run and a relax in progress are drawn gray.
-Read it as a guide to which parts are loose, and not as a prediction of amplitudes, which along the soft motions of a long chain reach several nanometers.
+The fluctuation is computed the first time this color, thermal motion or a PDB export needs it.
+Because the fluctuation belongs to the latest relax, this color draws the drawn structure, an earlier run and a relax in progress in gray.
+Along the soft motions of a long chain the amplitudes reach several nanometers, so read the flexibility as a guide to which parts are loose, and not as a prediction of amplitudes.
 
 ## Runs
 
 <Figure name="inspect-runs" />
 
-**Runs** lists the runs of this session, newest last, with their energies, terminations, parameters and winding counts, and "not saved" in gold until a run is saved.
+**Runs** lists the runs of this session, newest last, with their energies, terminations, parameters and winding counts, and it marks each run "not saved", in gold, until the run is saved.
 **view** puts a run on screen, and a run relaxed under another model, such as a dimer in another junction state, is first restored on its own model and then drawn.
 When the session has dropped earlier runs ([Runs and run files](../export/#runs-and-run-files)), the list says how many.
 
-**compare to** sets the run on screen beside another run, with their metrics, the parameters in which they differ and each kissing loop's gap and twist error in both.
+**compare to** sets the run on screen beside another run and lists their metrics, the parameters in which they differ, and each kissing loop's gap and twist error in both runs.
 The energies of runs under different parameters are marked as not comparable.
 **Copy this comparison** copies the comparison as text, and **close comparison** closes it.
 
@@ -132,39 +140,42 @@ The energies of runs under different parameters are marked as not comparable.
 How the run and the reference are matched depends on the reference:
 
 - **A run of the same design** is matched nucleotide for nucleotide, with the RMSD of the sites after superposition, the mean and the largest deviation.
-  Because two runs of one assembly can number its identical copies differently, every labeling of the copies is tried, all of them up to four copies and the cyclic shifts and their reverses above that, and the lowest RMSD is kept.
-- **A structure whose chains match the design's strands**, with at least 80 % of the aligned nucleotides identical over at least a quarter of the shorter, is compared the same way by the C1′ RMSD.
+  Because two runs of one assembly can number the identical copies differently, the comparison tries the labelings of the copies and keeps the lowest RMSD: every labeling up to four copies, and above four copies the cyclic shifts and their reverses.
+- **A structure whose chains match the design's strands**, with at least 80 % of the aligned nucleotides identical over at least a quarter of the shorter sequence, is compared the same way by the C1′ RMSD.
 - **Anything else** is fitted rigidly by shape, the model's C1′ sites into the reference's, and the panel gives the mean distance.
-- **A map** is fitted the same way into its largest connected piece above a contour that encloses twice the model's volume, and its mirror image is kept when it fits clearly better.
+- **A map** is fitted the same way, into the map's largest connected piece above a contour that encloses twice the model's volume, and the map's mirror image is kept instead when the model fits it clearly better.
 
 The reference is moved onto the model and drawn over it in pale lilac: a structure as its C1′ trace, a run as its strands, and a map as its contour in dots.
-Because a run lies within a nanometer of the model, its trace would hide the colors, so a run is drawn only when **draw it over the model** is on.
-**Color by distance** switches the colors to **vs reference**, which scales each nucleotide's distance to the 95th percentile and draws in gray those not compared, and **Copy** copies the result as text.
+Because a reference run lies within a nanometer of the model, its strands would hide the colors, so a reference run is drawn only when **draw it over the model** is on.
+**Color by distance** switches the colors to **vs reference**, which scales each nucleotide's distance to the 95th percentile and draws the nucleotides not compared in gray.
+**Copy** copies the result of the comparison as text.
 
 <Figure name="inspect-compare-map" />
 
-The comparison follows the run on screen, so a run put on screen from Runs is compared in its turn, and with no relaxed run on screen the panel asks for one.
+The comparison follows the run on screen, so a run put on screen from Runs is compared in its turn.
+With no relaxed run on screen, the panel asks for one.
 
 ## Relax into a map
 
 When the reference in Compare is a density map, **Relax into map** under the comparison relaxes the run on screen once more, with the map as one more term of its energy, as the command line's `relax --map` does ([Command line](../command-line/#relax-into-a-map)).
-Use it when you have a cryo-EM map of the design and want the structure the model takes in that map: the map pulls each nucleotide toward its density, while the elastic model holds the helices and kissing loops of the design.
-The comparison above it moves the run only as a rigid body, so it says how well the relaxed shape matches the map, and the relax into the map says what the model has to change, and at what cost, to match it better.
+Use it when you have a cryo-EM map of the design and want the structure the model takes in that map: the map pulls each nucleotide toward the density, while the elastic model holds the helices and kissing loops of the design.
+The comparison above the form moves the run only as a rigid body, so it says how well the relaxed shape matches the map.
+The relax into the map says what the model has to change, and at what cost, to match the map better.
 
 The map is placed by the fit that Compare makes.
-The weight of the map in the energy is measured on the map, from its resolution, its noise and the model's density at the start, so no input sets it by hand.
+The weight of the map in the energy is measured on the map, from its resolution, its noise and the model's density at the start, so it is not set by hand.
 
 <Figure name="inspect-relax-into-map" />
 
 | input | default | why |
 |---|---|---|
-| **Resolution (Å)** | the value that an EMDB header beside the map (`emd-N.xml`) or a header label states, with its source beside the field | the blur of the map and the weight depend on it, so when the map states none you type it, from the map's EMDB entry for example |
-| **Hand** | **auto**, which takes the map's mirror image when it fits clearly better | a map has one hand, so models compared in one map should all take the one its deposited model sits in, set with **as read** or **mirror** |
-| **Weight scale** | 1, the weight measured on the map | it multiplies that weight, only to show how a result depends on it |
-| **Noise** | **residual**, what the placed model leaves of the map within its reach, noise and model error together | **solvent** reads the noise from the voxels beyond the model's reach alone, a stronger weight that turned helix steps left-handed on each of the three maps it was validated on |
-| **Check map** | none | a second map in the same frame, typically the other half map, which the relax never reads, so its fit before and after tests the result on data the relax did not fit |
+| **Resolution (Å)** | the value that an EMDB header beside the map (`emd-N.xml`) or a header label states, with its source beside the field | the blur of the map and the weight depend on it, so when the map states none, type it, for example from the map's EMDB entry |
+| **Hand** | **auto**, which takes the map's mirror image when it fits clearly better | a map has one hand, so all models compared in one map should take the hand of the map's deposited model, set with **as read** or **mirror** |
+| **Weight scale** | 1, the weight measured on the map | it multiplies the measured weight and serves only to show how a result depends on the weight |
+| **Noise** | **residual**, what the placed model leaves of the map within its reach, noise and model error together | **solvent** reads the noise only from the voxels beyond the model's reach and gives a stronger weight, which turned helix steps left-handed on each of the three maps it was validated on |
+| **Check map** | none | a second map in the same frame, typically the other half map, that the relax never reads, so the fit of the check map before and after tests the result on data the relax did not fit |
 
-**Relax into map** runs on a worker as Relax does, with the iteration, energy and gradient on the panel, and **Cancel** stops it and keeps nothing.
+**Relax into map** runs on a worker as Relax does and shows the iteration, energy and gradient on the panel, and **Cancel** stops it without keeping anything.
 The button is grayed, with the reason under it, while no relaxed run is on screen, while a relax is running, while the resolution is missing, and when the run on screen is itself relaxed into the map.
 For a tile of 720 nucleotides in a map of 308³ voxels, the whole relax into the map takes about 30 s.
 
@@ -172,18 +183,18 @@ For a tile of 720 nucleotides in a map of 308³ voxels, the whole relax into the
 
 <Figure name="inspect-map-run" />
 
-The result is a new run of the session, labeled `relaxed into <map> from run #n`, and it is put on screen.
-Compared with the map it was relaxed into, it is measured where the relax placed it, without a new fit, so its distances and its colors by distance belong to the placement its files are written in.
+The result is a new run of the session, labeled `relaxed into <map> from run #n`, and is put on screen.
+When this run is compared with the map it was relaxed into, it is measured where the relax placed it, without a new fit, so its distances and its colors by distance refer to the placement in which its files are written.
 The `relax into map` block of its report is shown under **Relax into map**, and **Copy** copies it as text.
-**Full atom** builds the all-atom structure of this run, which is the structure fitted to the map.
+**Full atom** builds the all-atom structure of this run: the structure fitted to the map.
 A run relaxed into a map is not relaxed into it again, so to try other settings, put its source run on screen from [Runs](#runs) and relax that one.
 
 | report line | what it says |
 |---|---|
-| `relax into map` | the map, and its resolution with where the resolution came from |
+| `relax into map` | the map, its resolution, and the source of the resolution |
 | `placement` | the fit Compare makes and the hand it is in, with the best fit in another orientation and the best fit of the other hand |
 | `noise`, `blur`, `weight`, `scale`, `residual` | what the weight was measured from: the solvent's level and noise (with the zero voxels of a mask left out), the blur at the map's resolution, the weight itself, how deep a site sits in the map term at the start, and what the placed model leaves of the map |
-| `energy` | the elastic energy before and after, which is the run's own energy without the map, and the change of the map term, split into its map part and its self-overlap part |
+| `energy` | the elastic energy before and after (the run's own energy, without the map), and the change of the map term, split into its map part and its self-overlap part |
 | `termination`, `iterations`, `solver` | how the relax ended, as for any relax |
 | `hard clashes`, `KL formed` | the clashes and the kissing loops of the fitted structure |
 | `handedness` | the stacked steps that are left-handed in the fitted structure where the build is right-handed |
@@ -194,28 +205,28 @@ A run relaxed into a map is not relaxed into it again, so to try other settings,
 ### Judging a fit
 
 - **The fit.** A good fit lowers the mean distance from the density and raises the share inside the contour and the correlation, from before to after.
-- **The cost.** The elastic energy rises by what the shape the map asks for costs the model, so compare that rise, in kT, between settings.
-- **The structure.** The hard clashes and the kissing loops formed should stay as they were in the run, since a loop opened or a new clash says that the map pulled harder than the model holds.
+- **The cost.** The elastic energy rises by the cost to the model of the shape the map asks for, so compare that rise, in kT, between settings.
+- **The structure.** A loop opened or a new clash says that the map pulled harder than the model holds, so the hard clashes and the kissing loops formed should stay as they were in the run.
 - **Flipped steps.** A `handedness` count above 0 means that the map pulled helix steps through to left-handed, the sign of a weight too strong for the map: keep **Noise** at residual and lower the **Weight scale**.
 - **The placement.** When the best fit in another orientation or of the other hand comes close to the one kept, the registration or the hand is ambiguous and the map can pull nucleotides into density that is not theirs, so settle the placement before you read the result.
-- **A half map as the check.** With the half maps of a map, relax into one and give the other as the check map, because the check map's fit before and after tests the result on data that the relax never read.
+- **A half map as the check.** Because the fit of the check map before and after tests the result on data that the relax never read, relax into one half map of a map and give the other half map as the check map.
 - **The weight.** To see how much a result depends on the weight, relax the same run again at a weight scale of 0.1 and of 10.
 
 ### Keeping the result
 
-A run file has no place for the map stage, and a file holding the fitted coordinates as an ordinary run would reopen as one, so a run relaxed into a map is not saved as a run file.
+A run file has no place for the map stage, and a file that held the fitted coordinates as an ordinary run would reopen as an ordinary run, so a run relaxed into a map is not saved as a run file.
 Its **Save...** is grayed, <kbd>Cmd</kbd>+<kbd>S</kbd> says why, **Save all unsaved...** leaves it out, and it does not count as unsaved when the window closes.
-To keep it, write its fitted structures from [Export](../export/#structures-of-a-run-relaxed-into-a-map), whose records say how they were fitted.
-To have the run again later, save its source run, which is an ordinary run, and relax that into the map with the same settings, since the same run and settings give the same structure.
+To keep it, write its fitted structures from [Export](../export/#structures-of-a-run-relaxed-into-a-map), and the records of those files say how the structures were fitted.
+Because the same run and settings give the same structure, you can have the run again later by saving its source run, an ordinary run, and relaxing that run into the map with the same settings.
 The command line's `relax --map` gives the same structure from the design and the same settings.
 
 ## Thermal motion
 
 <Figure name="inspect-thermal-motion" />
 
-**Thermal motion**, in the toolbar, shows how the relaxed structure flexes as a whole: it draws the structure swinging along the eight softest modes that move at least a tenth of the nucleotides, mixed in a loop that repeats.
+**Thermal motion**, in the toolbar, shows how the relaxed structure flexes as a whole: it draws the structure swinging along the eight softest modes that move at least a tenth of the nucleotides, mixed in a repeating loop.
 The amplitudes are the model's, while the speeds and phases are chosen for the loop, so the motion is a picture of the modes and not a trajectory.
-The knob under **Thermal motion** in [View options](../view/#view-options) sets the swing as a share of the thermal amplitude at 310 K, from 0 to 100 % and 25 % to start.
+The knob under **Thermal motion** in [View options](../view/#view-options) sets the swing as a share of the thermal amplitude at 310 K, from 0 to 100 %, starting at 25 %.
 
 Only the picture moves, so the metrics, the loop table and every export stay those of the relaxed structure.
 A mode that would carry a loop or an end far along a straight line is drawn only part of the way, and the label under the view counts such modes.

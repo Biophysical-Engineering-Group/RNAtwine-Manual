@@ -5,18 +5,19 @@ summary: The rnatwine command-line tool, organized by task, for batches, scripts
 figures: []
 ---
 
-The command-line tool `rnatwine` runs the pipeline the app runs, without a window or a graphics adapter, so that a scripted relax and a click in the app give the same numbers.
+The command-line tool `rnatwine` runs the same pipeline as the app, without a window or a graphics adapter, so a scripted relax gives the same numbers as a relax started in the app.
 Use it for batches, for long assembly runs on a server, and for what the app does not offer, such as dendrimer growth, ring-size scans and parameter tests.
-`rnatwine <command> --help` documents every option, and this page says which commands answer which question.
+`rnatwine <command> --help` documents every option of a command, and this page says which command answers which question.
 
 ## Install
 
 From a checkout of the repository, `pip install .` compiles and installs the tool in a few minutes.
-It needs Python 3.9 or newer, Rust 1.98 or newer and a C linker.
+The build needs Python 3.9 or newer, Rust 1.98 or newer and a C linker.
 On macOS, `./scripts/bundle_macos.sh` also writes the tool to `bin/rnatwine` beside the app, and `rnatwine --version` checks the installed tool.
 
-A design is given by the path of any one of its files, and the others are found beside it by name.
-`--threads N`, or the environment variable `RNATWINE_THREADS`, caps the threads one run uses at once without changing its results, and without a cap a single solve still takes at most half the cores.
+A design is given by the path of any one of its files, and the tool finds the other files beside it by name.
+`--threads N`, or the environment variable `RNATWINE_THREADS`, caps the number of threads one run uses at once, without changing its results.
+Without a cap, a single solve still takes at most half the cores.
 
 ## First look at a design, without a relax
 
@@ -37,22 +38,22 @@ rnatwine export-pdb run.rtrun relaxed.cif    # export again: PDB or mmCIF by the
 ```
 
 So that the outputs do not replace the design's own files, give them other names.
-A saved run (`.rtrun`) opens in the app with Open..., and a setup saved in the app runs as `rnatwine relax <design> --config <design>.setups/<name>.toml`.
+Runs and setups pass between the tool and the app: a saved run (`.rtrun`) opens in the app with Open..., and a setup saved in the app runs as `rnatwine relax <design> --config <design>.setups/<name>.toml`.
 
 ## Read the report
 
-Every relax prints a report, and a result is judged by these lines together, never by the energy alone.
+Every relax prints a report, and a result is judged by the following lines together, never by the energy alone.
 
 | report line | meaning |
 |---|---|
-| `energy` | elastic energy, pN·nm, comparable only between runs of the same design under the same parameters |
-| `grad ratio` | the gradient at the end as a fraction of the gradient at the start, and the best test of convergence: above 6e-5 the relax counts as stalled, while relaxes that finish cleanly stay well below it. The `termination` label alone says little, and `settled` means the shape stopped changing before the gradient reached its stop, which is not a minimum |
-| `hard clashes` | nucleotide contacts closer than the hard-clash distance the line prints, while `close contacts` counts those up to 0.60 nm |
-| `KL formed` | kissing loops formed, out of those set to close: a twist-register test, so read each loop's gap and twist error beside it |
+| `energy` | the elastic energy in pN·nm, comparable only between runs of the same design under the same parameters |
+| `grad ratio` | the gradient at the end as a fraction of the gradient at the start, and the best test of convergence: above 6e-5 the relax counts as stalled, and relaxes that finish cleanly stay well below it. The `termination` label alone says little: `settled` means that the shape stopped changing before the gradient reached its stop, not that the shape is at a minimum |
+| `hard clashes` | the contacts between nucleotides closer than the hard-clash distance printed on the line, and `close contacts` counts those up to 0.60 nm |
+| `KL formed` | the kissing loops formed, out of those set to close. Because the test is one of twist register, read each loop's gap and twist error beside it |
 
-At the default settings a relax is two solves, the relax and then a final crossover stage started from its result.
+At the default settings a relax is two solves: the relax itself, then a final crossover stage started from its result.
 The numbers are those of the final stage, and the `final stage` line gives those of the first solve.
-After it, `thermal spread` gives each nucleotide's harmonic fluctuation at 310 K (written to `<out>.rmsf.csv`), which `--pdb` also writes into the B-factor column in Å.
+The report then gives, in `thermal spread`, each nucleotide's harmonic fluctuation at 310 K, written to `<out>.rmsf.csv`, and `--pdb` also writes the fluctuation into the B-factor column, in Å.
 
 ## Kissing-loop roles and clasp isomers
 
@@ -62,12 +63,12 @@ rnatwine loops tile.dat --role 3=join --role 4=close --save  # save the roles be
 rnatwine relax tile.dat --set clasp_isomer_other=1           # loop "1" closes in its other isomer
 ```
 
-A relax does not start while a loop has no role, and it lists each such loop with its halves and drawn distance.
+A relax does not start while a loop has no role, and instead lists each such loop with its halves and drawn distance.
 A configuration file can also give the roles in a `[loops]` table ([Loop roles](../concepts/#loop-roles)).
 
 ## Dimers, rings, tubes and sheets
 
-A run configuration with an `[assembly]` block relaxes several copies:
+A run configuration with an `[assembly]` block relaxes several copies of a design:
 
 ```toml
 [assembly]
@@ -86,10 +87,11 @@ rnatwine relax --config dimer.toml tile.dat --pdb dimer.pdb --write-dat dimer.da
 rnatwine ring-scan tile.dat --config ring.toml --sizes 3-8 --csv scan.csv   # closure strain of rings of 3 to 8 copies
 ```
 
-Tubes and sheets take an `[assembly.lattice]` block instead of a join list, strips take an `[assembly.strip]` block, and assemblies of relaxed runs take `[[assembly.block]]` and `[[assembly.block_join]]` tables, as the app's Build step writes them with Save config.
-An assembly takes minutes to hours, so estimate its time from a small case before you run a large one.
+Tubes and sheets take an `[assembly.lattice]` block instead of a join list, strips take an `[assembly.strip]` block, and assemblies of relaxed runs take `[[assembly.block]]` and `[[assembly.block_join]]` tables.
+The app's Build step writes these blocks and tables with Save config.
+Because an assembly takes minutes to hours, estimate its time from a small case before you run a large one.
 `ring-scan` reports the strain of closing each ring size, and several sizes within about 1 kT per copy of the lowest are the expected result.
-The model shows which sizes a tile can close at with little strain, while which of them forms depends on entropy and on the RNA concentration, which the model does not include.
+The model shows which sizes a tile can close at with little strain, but not which of them form: that depends on entropy and on the RNA concentration, which the model does not include.
 
 ## Import a structure
 
@@ -100,8 +102,8 @@ rnatwine relax designs/model/model.dat --pdb out.pdb --source-numbering   # keep
 rnatwine pyfurnace-json designs/model/model.dat     # the import as a pyFuRNAce .json (needs pyFuRNAce)
 ```
 
-Read the import report before you relax the import: the patches, the loops it could not assign, the locks it made and the quality table.
-`--cage` sets which regions that no stem or library loop explains are locked: `cores`, the default, locks every cluster that H-bonds or stacks hold together, whatever its size, while `contacts` and `interactions` lock only the large clusters.
+Before you relax an imported design, read the import report: the patches, the loops the import could not assign, the locks it made and the quality table.
+`--cage` sets which of the regions that no stem or library loop explains are locked: `cores`, the default, locks every cluster held together by H-bonds or stacks, whatever its size, and `contacts` and `interactions` lock only the large clusters.
 A design folder keeps its lock file until the structure is imported again.
 
 ## Compare with a structure
@@ -124,20 +126,21 @@ rnatwine relax tile.dat --map half_1.map --map-resolution 4.9 --map-check half_2
 rnatwine relax tile.dat --map emd.map --map-resolution 6.5 --map-weight-scale 0.1      # a tenth of the weight
 ```
 
-The relax runs as it does without a map, prints its report and writes its outputs, and then relaxes the result into the map and prints the `relax into map` block, the same as the app's ([Relax into a map](../inspect/#relax-into-a-map)).
-So that a run file stays an ordinary run, `--save`, `--write-dat` and `--pdb` keep writing the run's own result, the model's minimum, and only `--map-dat` and `--map-pdb` write the fitted structure.
+The relax runs as it does without a map, prints its report and writes its outputs.
+It then relaxes the result into the map and prints the `relax into map` block, the same block as the app's ([Relax into a map](../inspect/#relax-into-a-map)).
+So that a run file stays an ordinary run, `--save`, `--write-dat` and `--pdb` still write the run's own result, the model's minimum, and only `--map-dat` and `--map-pdb` write the fitted structure.
 
 | option | what it does |
 |---|---|
 | `--map MAP` | the map, MRC or CCP4 |
-| `--map-resolution A` | its resolution in Å, needed when neither an EMDB header beside the map (`emd-N.xml`) nor a header label gives it |
-| `--map-hand HAND` | the map's hand: `auto` (the default) takes the mirror image when it fits clearly better, and `as-read` or `mirror` sets it, so that models compared in one map take the same hand |
-| `--map-weight-scale X` | multiplies the weight measured on the map (default 1), only to show how a result depends on it |
-| `--map-noise FROM` | where the weight's noise is read: `residual` (the default), what the placed model leaves of the map within its reach, or `solvent`, the voxels beyond it, which gives a stronger weight |
-| `--map-check MAP` | a second map in the first's frame, typically the other half map, never read by the relax: the fit to it before and after |
+| `--map-resolution A` | the map's resolution in Å, needed when neither an EMDB header beside the map (`emd-N.xml`) nor a label in the map's header gives it |
+| `--map-hand HAND` | the map's hand: `auto` (the default) takes the mirror image when the mirror image fits clearly better, and `as-read` or `mirror` sets the hand, so that models compared in one map have the same hand |
+| `--map-weight-scale X` | multiplies the weight measured on the map (default 1), and serves only to show how a result depends on the weight |
+| `--map-noise FROM` | where the noise for the weight is read: `residual` (the default), what the placed model leaves of the map within the model's reach, or `solvent`, the voxels beyond that reach, which gives a stronger weight |
+| `--map-check MAP` | a second map in the frame of the first, typically the other half map, which the relax never reads: the fit to it is given before and after the relax |
 | `--map-dat FILE` | the fitted structure as an oxDNA `.dat`, with its `.top` beside it |
 | `--map-pdb FILE` | the fitted structure as a full-atom PDB, or mmCIF for a `.cif` name, with `REMARK 250` records saying how it was fitted |
-| `--map-frame FRAME` | the frame of `--map-dat` and `--map-pdb`: `map` (the default), the map's frame or, for the mirror hand, that of the map's mirror image, or `model`, the model's own frame, whose records then give the placement |
+| `--map-frame FRAME` | the frame of `--map-dat` and `--map-pdb`: `map` (the default), the frame of the map or, for the mirror hand, of the map's mirror image, or `model`, the model's own frame, with the placement given in the records |
 
 The frame and the records are those of the app's fitted structures ([Structures of a run relaxed into a map](../export/#structures-of-a-run-relaxed-into-a-map)).
 
@@ -151,7 +154,7 @@ rnatwine adjust tile.dat --edit 520:slide+ --relax --quick --out out/adj   # sli
 ```
 
 Nucleotides are numbered from 0 in the order of the `.top`, and each edit uses the numbering left by the edits before it.
-`--relax --quick` gives the app's quick relax after each edit, and the result to keep comes from relaxing the written design with `rnatwine relax`.
+`--relax --quick` runs the app's quick relax after each edit, and the result to keep comes from relaxing the written design with `rnatwine relax`.
 
 ## Grow a dendrimer
 
@@ -160,8 +163,8 @@ rnatwine grow tile.dat --copies 40 --target-mg-ml 50 --snapshot-dir out/grow --p
 rnatwine grow tile.dat --copies 80 --resume-joins out/grow/copies_0040.toml --resume-from out/grow/copies_0040.pos
 ```
 
-Copies attach one at a time (or `--chunk` at a time) to free arms, with a relax after each addition.
-Because growth takes a long time, estimate it from a short run first.
+Copies attach to free arms one at a time (or `--chunk` at a time), with a relax after each addition.
+Because growth takes a long time, estimate its time from a short run first.
 
 ## Parameters
 
@@ -171,12 +174,12 @@ rnatwine relax tile.dat --set axis_bend_lp_scale=1.2 --save-config resolved.toml
 ```
 
 `configs/adopted.toml` in the repository documents every default with its reason.
-A misspelled, retired or contradictory parameter is refused when the file is read, with the reason.
-Write only the parameters you mean to change in a configuration's `[flags]`.
+A misspelled, retired or contradictory parameter is refused, with the reason, when the file is read.
+In a configuration's `[flags]`, write only the parameters you mean to change.
 
 ## Pictures without a window
 
-The app itself, not `rnatwine`, draws the 3D view to PNG with no window, for figures and web pages: the view alone, with no panels, loop handles or labels, at a chosen size and, if you like, on a transparent ground.
+For figures and web pages, the app itself, not `rnatwine`, draws the 3D view to PNG without a window: the view alone, with no panels, loop handles or labels, at a chosen size and, if you ask, on a transparent background.
 
 ```bash
 RNAtwine --render-one run.rtrun tile.png --view twine --colour plain --theme light \
@@ -186,19 +189,20 @@ RNAtwine --render figures.toml out/ --only hero    # only the images named
 ```
 
 `RNAtwine` here is the executable inside the app bundle, `RNAtwine.app/Contents/MacOS/RNAtwine`.
-A script is a TOML file with one `[[image]]` table for each picture, giving its design, setup or run file, whether to relax, the view, colors, theme, camera, lighting, background, size and a reference to compare with, and the repository's `docs/app.md` lists the keys under "Render mode".
-`--render-one` takes the same keys as flags.
+A script is a TOML file with one `[[image]]` table for each picture, giving its design, setup or run file, whether to relax, the view, colors, theme, camera, lighting, background, size and a reference to compare with.
+The repository's `docs/app.md` lists these keys under "Render mode", and `--render-one` takes the same keys as flags.
 The numbers are the app's: a design is relaxed as Relax relaxes it, and a run file is opened as Open opens it.
-Each image's record, with the run on screen, its energy, termination, hard clashes and loops formed, goes to `manifest.json` in the output folder, or to a `.json` of the image's name beside a single image.
-The GPU draws the images when there is one, and without one, or with `--cpu`, the CPU draws previews with the twine as plain tubes, and the record says which drew each image.
-The exit status is 0 when every image was drawn as asked, 1 when one had a problem, while the rest are still drawn, and 2 on an error before any drawing.
+Each image's record (the run on screen, its energy, termination, hard clashes and loops formed) goes to `manifest.json` in the output folder, or, for a single image, to a `.json` of the image's name beside it.
+The GPU draws the images when there is one, and without a GPU, or with `--cpu`, the CPU draws previews with the twine as plain tubes.
+The record of each image says whether the GPU or the CPU drew it.
+The exit status is 0 when every image was drawn as asked, 1 when an image had a problem (the others are still drawn), and 2 on an error before any drawing.
 
 ## Hand off to other tools
 
-- **oxView** opens the `.dat` from `--write-dat` together with the `.top` that it writes beside it.
-- **ChimeraX, PyMOL and Mol\*** read the file from `--pdb` or `export-pdb`, PDB or mmCIF by the extension, and mmCIF suits large assemblies.
-  The file from `--map-pdb` lies on its map in ChimeraX, on the flipped map for the mirror hand ([Export](../export/#structures-of-a-run-relaxed-into-a-map)).
-- **pyFuRNAce** reads the `.json` that `pyfurnace-json` writes, for the drawing of an import or, with `--coords relaxed.dat`, for a relaxed shape in the design's own `.json`.
+- **oxView** opens the `.dat` from `--write-dat` together with the `.top` written beside it.
+- **ChimeraX, PyMOL and Mol\*** read the file from `--pdb` or `export-pdb`, PDB or mmCIF by its extension, and mmCIF suits large assemblies.
+  The file from `--map-pdb` lies on its map in ChimeraX, or on the flipped map for the mirror hand ([Export](../export/#structures-of-a-run-relaxed-into-a-map)).
+- **pyFuRNAce** reads the `.json` that `pyfurnace-json` writes: the drawing of an imported design or, with `--coords relaxed.dat`, a relaxed shape in the design's own `.json`.
   pyFuRNAce's own Relax page runs this tool when `rnatwine` is on the `PATH` or `RNATWINE_BIN` names it.
 
-The repository's `skills/rnatwine/SKILL.md` gives the same tasks in more depth, written for a coding agent that drives the tool.
+The repository's `skills/rnatwine/SKILL.md` covers the same tasks in more depth, for a coding agent that drives the tool.

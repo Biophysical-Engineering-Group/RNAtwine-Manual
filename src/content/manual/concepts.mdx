@@ -4,31 +4,31 @@ order: 9
 summary: How the twine model works, what About lists, what kissing loops, clasps and loop roles are, how assemblies are relaxed, and what a run file keeps.
 figures:
   - name: concepts-about
-    caption: The About window, with the values the model uses beside its description of the model.
+    caption: The About window, with the model's description and, beside it, the values that the model uses.
   - name: concepts-loop-closing
-    caption: A relaxed tile over its drawing, shown as a pale overlay with drawn model in View options.
+    caption: "A relaxed tile over its drawing: the drawing is shown as a pale overlay with drawn model in View options."
 ---
 
 ## The twine model in brief
 
 RNAtwine is a minimal elastic model of RNA with one site per nucleotide.
-Its helices are calibrated to the measured mechanics of double-stranded RNA, and its crossovers and kissing loops take the geometry of deposited structures.
-Every parameter is the same for every design, so the shape a design relaxes to comes from its helices and from the direction and flexibility of its connecting arms, not from parameters fitted to that design.
+The model's helices are calibrated to the measured mechanics of double-stranded RNA, and its crossovers and kissing loops take the geometry of deposited structures.
+Because every parameter is the same for every design, the shape that a design relaxes to comes from its helices and from the direction and flexibility of its connecting arms, not from parameters fitted to that design.
 
-Each site sits at its nucleotide's center of mass: backbone steps join successive sites, rungs join the two sites of each base pair, and cross-diagonals join neighboring pairs, so that each duplex is a truss.
-A helix term holds the rise and twist of every base-pair step, and an axis-bend term sets how easily stacked helices bend.
+Each site sits at the center of mass of its nucleotide, and the sites are joined so that each duplex is a truss: backbone steps join successive sites, rungs join the two sites of each base pair, and cross-diagonals join neighboring pairs.
+A helix term restrains the rise and twist of every base-pair step, and an axis-bend term sets how easily stacked helices bend.
 Helices exclude volume as chains of capsules, and one steric rule keeps nucleotides from overlapping.
 
-A design drawn in pyFuRNAce has ideal helices, and its kissing loops only approximately meet, so the drawing is not yet a shape the molecule can take.
-A relax minimizes the model's energy starting from that drawing, and the kissing loops close onto templates taken from deposited loops of the same type.
-As the loops close they pull on their helices, so the strain spreads through the whole structure instead of staying where the drawing put the mismatch.
+A design drawn in pyFuRNAce has ideal helices and kissing loops whose halves only approximately meet, so the drawing is not yet a shape that the molecule can take.
+Starting from the drawing, a relax minimizes the model's energy and closes the kissing loops onto templates taken from deposited loops of the same type.
+As the loops close, they pull on their helices, so that the strain spreads through the whole structure instead of staying where the drawing put the mismatch.
 
 <Figure name="concepts-loop-closing" />
 
-The relax finds a basin of the folding landscape and its energy.
+A relax finds one basin of the folding landscape and the energy of that basin.
 Because the model does not weigh basins by entropy or follow the path between them, it does not say which of several near-equal states forms, or how often: that is set by how the molecule folds and assembles.
 When a design can take several states of nearly equal energy, such as rings of different sizes, the two isomers of a clasp or the stacking states of a junction, the set of states is the result.
-A relax stays in the basin it starts in, so each of these states is built and relaxed on its own.
+A relax stays in the basin it starts in, so each of these states is built and relaxed separately.
 
 ## The About window
 
@@ -42,12 +42,12 @@ A relax stays in the basin it starts in, so each of these states is built and re
 - the deposited structures that the kissing-loop templates are taken from
 - kT at 310 K
 
-The app does not offer these values for editing, but a setup or configuration file can change some of them.
-About then lists them under **Parameters of this setup** with their standard values and the values in use, and **Back to the standard parameters** restores the standard set.
+The app offers no way to edit these values, but a setup or configuration file can change some of them.
+About then lists the parameters that the setup changes under **Parameters of this setup**, each with its standard value and the value in use, and **Back to the standard parameters** restores the standard set.
 
 ### About the author
 
-RNAtwine is written by Cody Geary at the Center for Molecular Biology of Heidelberg University (ZMBH), and it is released under the MIT License.
+RNAtwine is written by Cody Geary at the Center for Molecular Biology of Heidelberg University (ZMBH) and is released under the MIT License.
 
 <Todo>Add a few sentences about the author's research and a link to the group's page.</Todo>
 
@@ -58,10 +58,11 @@ RNAtwine is written by Cody Geary at the Center for Molecular Biology of Heidelb
 ## Kissing loops and clasps
 
 A kissing loop is two hairpin loops whose bases pair with each other.
-pyFuRNAce declares each one as two halves, which pair either with each other, as a clasp or a lid that holds the tile's shape, or with the matching half on another copy, as a connector.
-Because the export declares both kinds in the same way, every loop needs a role that says which it is ([Loop roles](#loop-roles)).
+pyFuRNAce declares each kissing loop as two halves, which pair either with each other or with the matching halves on another copy.
+Halves that pair with each other form a clasp or a lid that holds the tile's shape, and halves that pair with another copy form a connector.
+Because the export declares both kinds in the same way, every loop needs a role that says which kind it is ([Loop roles](#loop-roles)).
 
-A clasp can close in either of two isomers, related by a half turn like clasped hands with either thumb on top.
+A clasp can close in either of two isomers, related by a half turn, like clasped hands with one thumb or the other on top.
 Because a relax stays in the isomer it starts in, you choose the isomer of each clasp in [Build](../build/#clasp-isomers), and the relax keeps it.
 
 ## Loop roles
@@ -81,31 +82,34 @@ Each loop takes its role from the first of these sources that names it:
 2. The roles saved with the design, in `<name>.loops.toml` beside its `.dat`.
 3. The default rule, under which a loop drawn with its halves within 4.15 nm of each other closes, and a loop drawn farther apart is a join when the run's assembly joins it across copies.
 
-A relax starts only when every loop has a role, so any loop that none of these names has to be given one.
-The default distance comes from the designs: the widest loop that a drawn tile closes on itself, the clasp of the deposited barrel tile, is drawn 4.15 nm apart, and every other loop drawn closed sits at 0.5 to 0.7 nm.
-A loop drawn farther apart than that could be either a connector or a loop meant to close, so its role comes from you and not from a distance.
+A relax starts only when every loop has a role, so a loop that none of these sources names has to be given one.
+The default distance comes from the designs: the widest loop that a drawn tile closes on itself is the clasp of the deposited barrel tile, drawn 4.15 nm apart, and every other loop drawn closed has its halves 0.5 to 0.7 nm apart.
+Because a loop drawn farther apart than 4.15 nm could be either a connector or a loop meant to close, its role comes from you and not from a distance.
 
 ## Assemblies and junction states
 
 An assembly is several copies of a tile joined through their connector loops: a dimer, a ring, a chain, a strip, or a tube or sheet.
-Each join pairs the forward half of a loop on one copy with the reverse half on the next copy, so that the two run antiparallel, as the design's own pairs do.
+Each join pairs the forward half of a loop on one copy with the reverse half on the next copy, so that the two halves run antiparallel, as the design's own pairs do.
 Every copy is cut from the design as drawn, except in a tube or sheet, which by default starts from one relaxed tile.
 
 **Junction stacking states.** At a four-way junction, two of the four strand steps stack, so that their helices continue coaxially across a nick, and the other two cross over.
-The drawing fixes which steps stack, but the junction can also stack the other way, pivoted, with every helix end still stacked, and a copy joined through a loop on one of its arms can favor this state, which the drawing never shows.
-So that a dimer can reach it, every terminal four-way junction with a joined site on its arms is relaxed in each stacking state, a terminal junction being one whose moving arms are unbranched stem-loops.
-The lowest-energy state among those that converged is kept, and every state is listed.
-A pivot that would open a loop the drawing closes is not tried, since the design never folds that way.
+The drawing fixes which steps stack, but the junction can also stack the other way: pivoted, with every helix end still stacked.
+A copy joined through a loop on one of the junction's arms can favor the pivoted state, although the drawing never shows it.
+So that a dimer can reach the pivoted state, every terminal four-way junction (one whose moving arms are unbranched stem-loops) with a joined site on its arms is relaxed in each stacking state.
+Of the states that converged, the lowest in energy is kept, and every state is listed.
+A pivot that would open a loop that the drawing closes is not tried, since the design never folds that way.
 
-**Starts.** Because a relax stays in the basin it starts in, an assembly relax searches the arrangements that the copies can take from several starts and keeps the lowest in energy.
+**Starts.** Because a relax stays in the basin it starts in, an assembly relax searches the arrangements that the copies can take by relaxing from several starts, and it keeps the result lowest in energy.
 A dimer joined to itself through one loop both ways starts with the two copies facing each other at three offsets.
 A ring of three or more identical copies is relaxed from a flat belt at two radii and from a ring about the tile's smallest axis.
-A chain whose joins repeat starts from a short chain that is relaxed first, whose bent middle copy is laid along the chain at seven turns, so that a chain takes 7 to 23 relaxes.
+A chain whose joins repeat starts from a short chain that is relaxed first.
+The bent middle copy of that short chain is laid along the chain at seven turns, so that a chain takes 7 to 23 relaxes.
 
 **Symmetric solves.** Rings and dimers of identical copies are solved with exact symmetry: each copy is copy 0 turned about one axis, so that every copy has the same shape.
 
 ## Runs and run files
 
-A run is the result of one relax: the relaxed coordinates, the drawn coordinates it started from, the report, and the settings it was solved under, which are its parameters, its assembly and junction state, and its loop roles.
+A run is the result of one relax: the relaxed coordinates, the drawn coordinates it started from, the report, and the settings it was solved under.
+These settings are the parameters, the assembly and junction state, and the loop roles.
 So that a run opened again reports the same measures, a run file (`.rtrun`) stores the run exactly: a text header with the settings and the report, followed by the coordinates as raw numbers.
 Relaxes are deterministic: the same design, settings and version of RNAtwine give the same result on any number of threads.

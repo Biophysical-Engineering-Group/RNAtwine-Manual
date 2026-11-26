@@ -22,15 +22,19 @@ Because the files of one design share a name, any one of them opens the design, 
 
 The buttons at the top of the page choose where the designs come from:
 
-- **Library** opens the published designs that come with RNAtwine, with their saved setups for dimers, rings and clasp isomers, from the `library/designs/` folder of the repository the app was built from.
-- **Folder...** opens a folder of your own designs and the folders one level down, and **Rescan** reads it again after its files have changed on disk.
+- **Library** opens the published designs that come with RNAtwine, from the `library/designs/` folder of the repository the app was built from.
+  These designs come with their saved setups for dimers, rings and clasp isomers.
+- **Folder...** opens a folder of your own designs, together with the folders one level down.
+  **Rescan** reads the folder again after its files have changed on disk.
 - **Open...** opens a single file of any kind that RNAtwine reads ([below](#opening-any-file-with-open)).
 
 <Figure name="open-library" />
 
-The designs of the open folder are listed as cards, each giving the size of the design in nucleotides, its kissing loops and its saved setups, with a note when its sequence holds `N` or `K` placeholders.
+The designs of the open folder are listed as cards, each giving the design's size in nucleotides, its kissing loops and its saved setups.
+A card also notes when the design's sequence holds `N` or `K` placeholders.
 Type part of a name in the field above the cards to filter them, and click a card to open its design.
-A design that cannot be built shows the reason on its card and does not open, and a group of files that lacks a required file is listed as incomplete.
+A design that cannot be built shows the reason on its card and does not open.
+A group of files that lacks a required file is listed as incomplete.
 When the environment variable `RNATWINE_DESIGNS` names a registry of designs, the page also offers a picker of the registry's designs by name.
 
 ## Opening any file with Open...
@@ -45,14 +49,15 @@ Because a `.dat` can hold either a pyFuRNAce design or an oxRNA configuration, R
 | `.dat` or `.oxdna` with only the `.top` of its name beside it, or a `.top` with only its `.dat` | an oxRNA configuration, imported as a design |
 | `.rtrun` | a saved run, restored without solving it again ([below](#opening-a-saved-run)) |
 
-Any other file is refused with a message that lists the kinds RNAtwine reads, and a `.dat` with neither a `.txt` nor a `.top` of its name beside it is refused with that reason.
+Any other file is refused with a message that lists the kinds of file RNAtwine reads.
+A `.dat` with neither a `.txt` nor a `.top` of its name beside it is refused with that reason.
 
 <Figure name="open-formats" />
 
 ## A pyFuRNAce .json
 
-Because RNAtwine relaxes a design's export, a pyFuRNAce blueprint (`.json`) opens the export no older than itself that lies beside it or in the folder named after it.
-Otherwise your own pyFuRNAce draws the design into that folder, which takes a second or two, and the `.json` you picked is never rewritten.
+Because RNAtwine relaxes a design's export, opening a pyFuRNAce blueprint (`.json`) opens its export when the export lies beside the `.json` or in the folder named after it and is no older than the `.json`.
+Otherwise your own pyFuRNAce draws the design into the folder named after the `.json`, in a second or two, and never rewrites the `.json` you picked.
 To find pyFuRNAce, the app tries these Pythons in order:
 
 1. the path given under **Where pyFuRNAce is** in [Edit](../edit/#saving-an-edited-design)
@@ -61,7 +66,7 @@ To find pyFuRNAce, the app tries these Pythons in order:
 4. `python3` and `python` on the `PATH`
 5. the usual conda and Homebrew locations
 
-When none of them has pyFuRNAce, the message says so and lists each Python it tried, and you can open the design's `.dat` instead.
+When none of them has pyFuRNAce, a message says so and lists each Python that the app tried, and you can open the design's `.dat` instead.
 
 ## Importing an experimental structure
 
@@ -75,22 +80,25 @@ The report lists what the import found and did, in this order:
 - the `INPUT PATCHED` lines, one for each gap joined across the input's numbering, to check against the input
 - the strand gaps and notes
 - the **Dot-bracket** that the import inferred, which you can edit
-- the **Kissing loops** it found, each with a box that you untick to decline the loop
+- the **Kissing loops** that the import found, each with a box that you untick to decline the loop
 - the **Locked regions**, kept at their imported geometry, each of which you can decline
 - **Quality: the rebuilt model against the input**
 
-**Re-import with these choices** runs the import again after you change any of these.
-**Open design** opens the design once the choices shown are the ones written, and **Write pyFuRNAce .json** writes a pyFuRNAce blueprint of it, which needs pyFuRNAce.
-The app writes the design to a folder named after the input, beside the input file, without asking where, and the command line's `rnatwine import --out` can write it elsewhere ([Command line](../command-line/#import-a-structure)).
+**Re-import with these choices** runs the import again after you change any of the choices above.
+**Open design** opens the design once the choices shown are the ones written.
+**Write pyFuRNAce .json** writes a pyFuRNAce blueprint of the design and needs pyFuRNAce to do so.
+The app writes the design, without asking where, to a folder named after the input and beside the input file.
+To write it elsewhere, use the command line's `rnatwine import --out` ([Command line](../command-line/#import-a-structure)).
 
-An imported design opens labeled `AS IMPORTED`, because the view shows the input's coordinates and not yet the model.
+Because the view shows the input's coordinates and not yet the model, an imported design opens labeled `AS IMPORTED`.
 A relax puts each recognized kissing loop on the model's template and the stems on A-form helices, and only the locked regions keep their imported geometry.
 
 ## Opening a saved run
 
-A run file (`.rtrun`, written from [Export](../export/#runs-and-run-files)) opens its design under the settings of the run, which become the settings of the Build step: its parameters, its kissing-loop template, its assembly or lattice, and its loop roles.
+A run file (`.rtrun`, written from [Export](../export/#runs-and-run-files)) opens its design under the run's settings, which become the settings of the Build step: the run's parameters, kissing-loop template, assembly or lattice, and loop roles.
 The run is restored without being solved again: its energy and measures are taken at the stored coordinates, and its termination, gradient, iterations and solve time are those the file recorded.
-The run joins the session's runs as a saved run, and when the session is already on the same design, the runs already there stay.
+The run joins the session's runs as a saved run.
+When the session is already on the same design, the runs already in the session stay.
 
 The status line gives the run's energy `as saved`, or `scored <E> under this version (saved <E>)` when this version of RNAtwine computes a different energy at the same coordinates.
 Because the model is rebuilt from the design's files, a run file whose design is no longer where the file says is refused before anything opens, with a message that names the run file.
@@ -101,10 +109,10 @@ Because the model is rebuilt from the design's files, a run file whose design is
 
 So that its loops can be picked and given roles before any relax, the design is drawn as pyFuRNAce drew it, built under the current settings and loop roles but not relaxed.
 Until the first relax, the label under the view reads `AS DRAWN` and the drawing follows the settings in Build.
-So that a burst of changes builds it only once, the drawing is built again half a second after your last change to a loop role or the assembly.
+So that a burst of changes rebuilds the drawing only once, the app rebuilds it half a second after your last change to a loop role or the assembly.
 
 Opening another design drops everything that belonged to the previous one: its results and runs, its assembly setup, its loop table and its clasp-isomer choices.
 
 <Note title="Save runs before opening another design">
-Because opening another design drops unsaved runs without asking, unlike closing the window, save the runs you want to keep with **Save all unsaved...** in [Export](../export/#runs-and-run-files) first.
+Because opening another design, unlike closing the window, drops unsaved runs without asking, first save the runs you want to keep with **Save all unsaved...** in [Export](../export/#runs-and-run-files).
 </Note>
